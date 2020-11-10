@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // 생성될 포지션
-    public Vector3 position;
-
-    public float speed = 100.0f;
-    public float timer = 0.0f;
-    public float lifeTime = 2.0f;
+    public float damage;
+    public float speed;
+    public float timer;
+    public float lifeTime;
     public Vector2 direction;
+
+    public GameObject deathLine;
+
+    private void Awake()
+    {
+        speed = 1000.0f;
+        timer = 0.0f;
+        lifeTime = 3.0f;
+    }
 
     private void Update()
     {
@@ -22,14 +29,11 @@ public class Bullet : MonoBehaviour
         this.transform.Translate( direction * speed * Time.deltaTime );
     }
 
-    public void SetBullet( float _speed, Vector3 _position, Vector2 _direction )
+    public void SetBullet( float _damage, Vector3 _position, Vector2 _direction )
     {
-        if ( _speed < 0.0f || _speed > 1000.0f )
-            Debug.Log( "비정상적인 값 Bullet Speed : " + _speed );
-
-        this.speed = _speed;
+        this.damage = _damage;
         this.direction = _direction;
-        this.position = _position;
+        this.transform.position = _position;
         this.timer = 0.0f;
     }
 }

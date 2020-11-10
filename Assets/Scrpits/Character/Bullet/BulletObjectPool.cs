@@ -14,13 +14,15 @@ public class BulletObjectPool : MonoBehaviour
     public List<Bullet> bulletWaitPool = new List<Bullet>();
 
     // 총알 생성하는 개수
-    public int bulletCreateCount = 10;
+    public int bulletCreateCount;
 
     public GameObject UsePool;
     public GameObject WaitPool;
 
     private void Awake()
     {
+        bulletCreateCount = 10;
+
         if ( instance == null )
         {
             instance = this;
@@ -59,7 +61,7 @@ public class BulletObjectPool : MonoBehaviour
         }
     }
 
-    public Bullet Spawn( float speed, Vector3 position, Vector2 direction )
+    public Bullet Spawn( float damage, Vector3 position, Vector2 direction )
     {
         // 리스트에 총알이 없다면 새로 생성
         if ( bulletWaitPool.Count <= 0 )
@@ -69,7 +71,7 @@ public class BulletObjectPool : MonoBehaviour
         bulletUsePool.Add( bullet );
         bulletWaitPool.Remove( bullet );
         bullet.transform.parent = UsePool.transform;
-        bullet.SetBullet( speed, position, direction );
+        bullet.SetBullet( damage, position, direction );
         bullet.gameObject.SetActive( true );
 
         return bullet;
@@ -83,5 +85,4 @@ public class BulletObjectPool : MonoBehaviour
         bullet.transform.parent = WaitPool.transform;
         bullet.gameObject.SetActive( false );
     }
-
 }
