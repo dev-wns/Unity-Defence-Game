@@ -61,7 +61,7 @@ public class BulletObjectPool : MonoBehaviour
         }
     }
 
-    public Bullet Spawn( float damage, Vector3 position, Vector2 direction )
+    public Bullet Spawn( float damage, Vector3 position, Vector3 direction )
     {
         // 리스트에 총알이 없다면 새로 생성
         if ( bulletWaitPool.Count <= 0 )
@@ -79,7 +79,7 @@ public class BulletObjectPool : MonoBehaviour
 
     public void Despawn( Bullet bullet )
     {
-        bullet.transform.position = new Vector3( 0, 0, 0 );
+        bullet.transform.position = new Vector3( 1000, 0, 0 );
         bulletWaitPool.Add( bullet );
         bulletUsePool.Remove( bullet );
         bullet.transform.parent = WaitPool.transform;

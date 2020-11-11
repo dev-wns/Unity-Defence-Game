@@ -5,18 +5,14 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public float attackRange;
-    public float attackDamage;
     public float attackDelay;
     
     // 범위에 들어온 타겟
     public Enemy target;
 
-    //public List<Enemy> enemyList = new List<Enemy>();
-
     private void Awake()
     {
-        attackRange = 700.0f;
-        attackDamage = 0.0f;
+        attackRange = 1500.0f;
         attackDelay = Random.Range( 0.1f, 1.0f );
     }
 

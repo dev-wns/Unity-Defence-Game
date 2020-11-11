@@ -77,6 +77,7 @@ public class EnemyObjectPool : MonoBehaviour
         enemyUsePool.Add( enemy );
         enemyWaitPool.Remove( enemy );
         enemy.transform.parent = UsePool.transform;
+        enemy.healthPoint = 100.0f;
         enemy.gameObject.SetActive( true );
 
         return enemy;

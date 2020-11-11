@@ -14,18 +14,11 @@ public class Enemy : MonoBehaviour
         healthPoint = 100.0f;
     }
 
-    private void OnTriggerEnter( Collider other )
+    private void OnCollisionEnter( Collision collision )
     {
-        if ( other.tag == "DeathLine")
+        if ( collision.transform.CompareTag( "Bullet" ) )
         {
-            EnemyObjectPool.Instance.Despawn( this );
-        }
-
-        if ( other.tag == "Bullet" )
-        {
-            hitBullet = other.GetComponentInParent<Bullet>();
-            healthPoint -= hitBullet.damage;
-            BulletObjectPool.Instance.Despawn( hitBullet );
+            healthPoint -= GameManager.Instance.playerDefaultDamage;
         }
     }
 

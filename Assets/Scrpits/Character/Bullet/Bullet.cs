@@ -8,13 +8,11 @@ public class Bullet : MonoBehaviour
     public float speed;
     public float timer;
     public float lifeTime;
-    public Vector2 direction;
-
-    public GameObject deathLine;
+    public Vector3 direction;
 
     private void Awake()
     {
-        speed = 1000.0f;
+        speed = 2000.0f;
         timer = 0.0f;
         lifeTime = 3.0f;
     }
@@ -29,7 +27,15 @@ public class Bullet : MonoBehaviour
         this.transform.Translate( direction * speed * Time.deltaTime );
     }
 
-    public void SetBullet( float _damage, Vector3 _position, Vector2 _direction )
+    private void OnCollisionEnter( Collision collision )
+    {
+        if ( collision.transform.CompareTag( "Enemy" ) == true )
+        {
+            BulletObjectPool.Instance.Despawn( this );
+        }
+    }
+
+    public void SetBullet( float _damage, Vector3 _position, Vector3 _direction )
     {
         this.damage = _damage;
         this.direction = _direction;

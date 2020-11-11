@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Bullet
   - DeathLine
+  - Enemys
+  - Bullet
   layers:
   - Default
   - TransparentFX
