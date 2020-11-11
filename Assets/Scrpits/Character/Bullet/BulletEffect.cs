@@ -28,6 +28,5 @@ public class BulletEffect : MonoBehaviour
         }
 
         this.transform.position = target.transform.position;
-
     }
 }
