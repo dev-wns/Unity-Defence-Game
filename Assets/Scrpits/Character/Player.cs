@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        
         timer += Time.deltaTime;
         if ( timer >= attackDelay )
         {

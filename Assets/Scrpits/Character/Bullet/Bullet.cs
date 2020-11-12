@@ -35,10 +35,13 @@ public class Bullet : MonoBehaviour
     {
         if ( other.transform.CompareTag( "Enemy" ) == true )
         {
+            Attack();
             isCrash = true;
             timer = 0.0f;
         }
     }
+
+    protected virtual void Attack() { }
 
     public void SetBullet( Vector3 _position, Vector3 _direction )
     {

@@ -8,10 +8,12 @@ public class Enemy : MonoBehaviour
     public float healthPoint;
     public Bullet hitBullet;
 
+    public bool isSlow = false;
+
     private void Awake()
     {
-        //moveSpeed = Random.Range( 100, 250 );
-        moveSpeed = 0;
+        moveSpeed = Random.Range( 100, 250 );
+        //moveSpeed = 0;
     }
 
     private void OnTriggerEnter( Collider other )
@@ -33,5 +35,18 @@ public class Enemy : MonoBehaviour
             EnemyObjectPool.Instance.Despawn( this );
 
         this.transform.Translate( new Vector3( 0, -1, 0 ) * moveSpeed * Time.deltaTime );
+    }
+
+    public IEnumerator Slow( float value, float _time )
+    {
+        if ( isSlow == false )
+        {
+            moveSpeed -= value;
+            isSlow = true;
+        }
+
+        yield return new WaitForSeconds( _time );
+        moveSpeed += value;
+        isSlow = false;
     }
 }

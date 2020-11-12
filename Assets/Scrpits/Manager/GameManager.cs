@@ -15,8 +15,8 @@ public class GameManager : Singleton<GameManager>
     {
         if ( Input.GetMouseButtonDown( 0 ) == true )
         {
-            //EnemyObjectPool.Instance.Spawn( new Vector3( Random.Range( -500, 500 ), 960, 0 ) );
-            EnemyObjectPool.Instance.Spawn( new Vector3( 0, 0, 0 ) );
+            EnemyObjectPool.Instance.Spawn( new Vector3( Random.Range( -500, 500 ), 960, 0 ) );
+            // EnemyObjectPool.Instance.Spawn( new Vector3( 0, 0, 0 ) );
         }
     }
 }
