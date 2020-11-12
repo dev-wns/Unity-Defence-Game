@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyObjectPool : MonoBehaviour
+public class EnemyObjectPool : Singleton<EnemyObjectPool>
 {
     private static EnemyObjectPool instance = null;
 
@@ -14,7 +14,7 @@ public class EnemyObjectPool : MonoBehaviour
     public List<Enemy> enemyWaitPool = new List<Enemy>();
 
     // 적 생성 개수
-    public int enemyCreateCount;
+    public int allocateCount;
 
     public GameObject UsePool;
     public GameObject WaitPool;
@@ -26,38 +26,17 @@ public class EnemyObjectPool : MonoBehaviour
 
     private void Awake()
     {
-        enemyCreateCount = 1;
-
-        if ( instance == null )
-        {
-            instance = this;
-            DontDestroyOnLoad( this.gameObject );
-        }
-        else
-        {
-            Destroy( this.gameObject );
-        }
-    }
-
-    public static EnemyObjectPool Instance
-    {
-        get
-        {
-            if ( instance == null )
-                return null;
-
-            return instance;
-        }
+        allocateCount = 10;
     }
 
     private void Start()
     {
-        CreateBullet();
+        Allocate();
     }
 
-    private void CreateBullet()
+    private void Allocate()
     {
-        for ( int count = 0; count < enemyCreateCount; count++ )
+        for ( int count = 0; count < allocateCount; count++ )
         {
             Enemy enemy = Instantiate<Enemy>( prefabEnemy );
             enemy.transform.parent = WaitPool.transform;
@@ -70,7 +49,7 @@ public class EnemyObjectPool : MonoBehaviour
     {
         // 리스트에 총알이 없다면 새로 생성
         if ( enemyWaitPool.Count <= 0 )
-            CreateBullet();
+            Allocate();
 
         Enemy enemy = enemyWaitPool[0];
         enemy.transform.position = position;
@@ -85,7 +64,7 @@ public class EnemyObjectPool : MonoBehaviour
 
     public void Despawn( Enemy enemy )
     {
-        enemy.transform.position = new Vector3( 0, 0, 0 );
+        enemy.transform.position = new Vector3( 0, 1000, 0 );
         enemyWaitPool.Add( enemy );
         enemyUsePool.Remove( enemy );
         enemy.transform.parent = WaitPool.transform;

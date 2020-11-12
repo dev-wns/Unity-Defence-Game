@@ -10,11 +10,13 @@ public class Bullet : MonoBehaviour
     public float lifeTime;
     public Vector3 direction;
 
+    public bool isCrash;
+
     private void Awake()
     {
         speed = 2000.0f;
         timer = 0.0f;
-        lifeTime = 3.0f;
+        lifeTime = 1.5f;
     }
 
     private void Update()
@@ -22,16 +24,29 @@ public class Bullet : MonoBehaviour
         this.timer += Time.deltaTime;
 
         if ( this.timer >= lifeTime )
-            BulletObjectPool.Instance.Despawn( this );
-
-        this.transform.Translate( direction * speed * Time.deltaTime );
-    }
-
-    private void OnCollisionEnter( Collision collision )
-    {
-        if ( collision.transform.CompareTag( "Enemy" ) == true )
         {
             BulletObjectPool.Instance.Despawn( this );
+            isCrash = false;
+        }
+        if ( isCrash == false )
+            this.transform.Translate( direction * speed * Time.deltaTime );
+    }
+
+    //private void OnCollisionEnter( Collision collision )
+    //{
+    //    if ( collision.transform.CompareTag( "Enemy" ) == true )
+    //    {
+    //        isCrash = true;
+    //        timer = 0.0f;
+    //    }
+    //}
+
+    private void OnTriggerEnter( Collider other )
+    {
+        if ( other.transform.CompareTag( "Enemy" ) == true )
+        {
+            isCrash = true;
+            timer = 0.0f;
         }
     }
 

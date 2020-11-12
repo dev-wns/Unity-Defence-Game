@@ -2,57 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletObjectPool : MonoBehaviour
+public class BulletObjectPool : Singleton<BulletObjectPool>
 {
-    private static BulletObjectPool instance = null;
-
     public Bullet prefabBullet;
-    
+
     // 사용중인 오브젝트 리스트
     public List<Bullet> bulletUsePool = new List<Bullet>();
     // 대기중인 오브젝트 리스트
     public List<Bullet> bulletWaitPool = new List<Bullet>();
 
     // 총알 생성하는 개수
-    public int bulletCreateCount;
+    public int allocateCount;
 
     public GameObject UsePool;
     public GameObject WaitPool;
 
     private void Awake()
     {
-        bulletCreateCount = 10;
-
-        if ( instance == null )
-        {
-            instance = this;
-            DontDestroyOnLoad( this.gameObject );
-        }
-        else
-        {
-            Destroy( this.gameObject );
-        }
-    }
-
-    public static BulletObjectPool Instance
-    {
-        get
-        {
-            if ( instance == null )
-                return null;
-
-            return instance;
-        }
+        allocateCount = 10;
     }
 
     private void Start()
     {
-        CreateBullet();
+        Allocate();
     }
 
-    private void CreateBullet()
+    private void Allocate()
     {
-        for ( int count = 0; count < bulletCreateCount; count++ )
+        for ( int count = 0; count < allocateCount; count++ )
         {
             Bullet bullet = Instantiate<Bullet>( prefabBullet );
             bullet.transform.parent = WaitPool.transform;
@@ -65,7 +42,7 @@ public class BulletObjectPool : MonoBehaviour
     {
         // 리스트에 총알이 없다면 새로 생성
         if ( bulletWaitPool.Count <= 0 )
-            CreateBullet();
+            Allocate();
 
         Bullet bullet = bulletWaitPool[0];
         bulletUsePool.Add( bullet );
@@ -79,7 +56,7 @@ public class BulletObjectPool : MonoBehaviour
 
     public void Despawn( Bullet bullet )
     {
-        bullet.transform.position = new Vector3( 1000, 0, 0 );
+        bullet.transform.position = new Vector3( 0, -1000.0f, 0 );
         bulletWaitPool.Add( bullet );
         bulletUsePool.Remove( bullet );
         bullet.transform.parent = WaitPool.transform;

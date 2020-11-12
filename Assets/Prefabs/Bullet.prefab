@@ -32,7 +32,7 @@ Transform:
   m_LocalPosition: {x: -1.84, y: 4.39, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
-  - {fileID: 1817643029374769057}
+  - {fileID: 2214805468974647340}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3287618666986549709}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -93,7 +93,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3287618666986549709}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -115,8 +115,7 @@ MonoBehaviour:
   timer: 0
   lifeTime: 2
   direction: {x: 0, y: 0, z: 0}
-  deathLine: {fileID: 0}
-  hitLength: 0
+  isCrash: 0
 --- !u!54 &2347781593463253695
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,7 +132,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1001 &1817643029375159591
+--- !u!1001 &2214805468974781098
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -190,8 +189,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1fca55934f274a4b9c8fd316d61e964, type: 3}
---- !u!4 &1817643029374769057 stripped
+--- !u!4 &2214805468974647340 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: f1fca55934f274a4b9c8fd316d61e964, type: 3}
-  m_PrefabInstance: {fileID: 1817643029375159591}
+  m_PrefabInstance: {fileID: 2214805468974781098}
   m_PrefabAsset: {fileID: 0}
