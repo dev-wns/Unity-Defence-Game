@@ -10,8 +10,8 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        moveSpeed = Random.Range( 100, 250 );
-        healthPoint = 100.0f;
+        //moveSpeed = Random.Range( 100, 250 );
+        moveSpeed = 0;
     }
 
     private void OnTriggerEnter( Collider other )

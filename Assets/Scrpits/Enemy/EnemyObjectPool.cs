@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyObjectPool : Singleton<EnemyObjectPool>
 {
-    private static EnemyObjectPool instance = null;
-
     public Enemy prefabEnemy;
 
     // 사용중인 오브젝트 리스트
@@ -16,8 +14,8 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
     // 적 생성 개수
     public int allocateCount;
 
-    public GameObject UsePool;
-    public GameObject WaitPool;
+    private GameObject UsePool;
+    private GameObject WaitPool;
 
     public List<Enemy> GetEnemyUsePool()
     {
@@ -26,6 +24,12 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
 
     private void Awake()
     {
+        UsePool = new GameObject( typeof( Enemy ).ToString() + "UsePool" );
+        UsePool.transform.parent = this.transform;
+        WaitPool = new GameObject( typeof( Enemy ).ToString() + "WaitPool" );
+        WaitPool.transform.parent = this.transform;
+
+
         allocateCount = 10;
     }
 
@@ -56,7 +60,7 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         enemyUsePool.Add( enemy );
         enemyWaitPool.Remove( enemy );
         enemy.transform.parent = UsePool.transform;
-        enemy.healthPoint = 100.0f;
+        enemy.healthPoint = 100000.0f;
         enemy.gameObject.SetActive( true );
 
         return enemy;

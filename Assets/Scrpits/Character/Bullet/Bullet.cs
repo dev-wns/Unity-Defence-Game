@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float damage;
     public float speed;
     public float timer;
     public float lifeTime;
@@ -16,7 +15,7 @@ public class Bullet : MonoBehaviour
     {
         speed = 2000.0f;
         timer = 0.0f;
-        lifeTime = 1.5f;
+        lifeTime = 1.7f;
     }
 
     private void Update()
@@ -25,21 +24,12 @@ public class Bullet : MonoBehaviour
 
         if ( this.timer >= lifeTime )
         {
-            BulletObjectPool.Instance.Despawn( this );
             isCrash = false;
+            BulletObjectPool.Instance.Despawn( this );
         }
         if ( isCrash == false )
             this.transform.Translate( direction * speed * Time.deltaTime );
     }
-
-    //private void OnCollisionEnter( Collision collision )
-    //{
-    //    if ( collision.transform.CompareTag( "Enemy" ) == true )
-    //    {
-    //        isCrash = true;
-    //        timer = 0.0f;
-    //    }
-    //}
 
     private void OnTriggerEnter( Collider other )
     {
@@ -50,9 +40,8 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void SetBullet( float _damage, Vector3 _position, Vector3 _direction )
+    public void SetBullet( Vector3 _position, Vector3 _direction )
     {
-        this.damage = _damage;
         this.direction = _direction;
         this.transform.position = _position;
         this.timer = 0.0f;

@@ -349,6 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8a1c2263fa6004390197b36865ff95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 8298886324792120186, guid: 784b2d6006bc4e641a2e9ce7e914d744, type: 3}
   attackRange: 0
   attackDelay: 0
   target: {fileID: 0}
@@ -461,6 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8a1c2263fa6004390197b36865ff95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: 220364437594885979, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
   attackRange: 0
   attackDelay: 0
   target: {fileID: 0}
@@ -492,9 +494,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 858514666}
-  - {fileID: 690770703}
+  m_Children: []
   m_Father: {fileID: 1506919992}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -514,8 +514,6 @@ MonoBehaviour:
   enemyUsePool: []
   enemyWaitPool: []
   allocateCount: 0
-  UsePool: {fileID: 858514665}
-  WaitPool: {fileID: 690770702}
 --- !u!1 &679942188
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,36 +626,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &690770702
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 690770703}
-  m_Layer: 0
-  m_Name: EnemyWaitPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &690770703
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690770702}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 643342010}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &732608050
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,40 +734,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8a1c2263fa6004390197b36865ff95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: -3338040007211589096, guid: 75d1bdc44a6d78948a3f1af7a80f9c0e, type: 3}
   attackRange: 0
   attackDelay: 0
   target: {fileID: 0}
   timer: 0
---- !u!1 &858514665
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 858514666}
-  m_Layer: 0
-  m_Name: EnemyUsePool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &858514666
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858514665}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 643342010}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &914263715
 GameObject:
   m_ObjectHideFlags: 0
@@ -859,9 +798,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2137022567}
-  - {fileID: 1969939449}
+  m_Children: []
   m_Father: {fileID: 1506919992}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -880,9 +817,6 @@ MonoBehaviour:
   prefabBullet: {fileID: -3338040007211589096, guid: 75d1bdc44a6d78948a3f1af7a80f9c0e, type: 3}
   bulletUsePool: []
   bulletWaitPool: []
-  allocateCount: 0
-  UsePool: {fileID: 2137022566}
-  WaitPool: {fileID: 1969939448}
 --- !u!1 &1440648262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8a1c2263fa6004390197b36865ff95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: -6259246052260382667, guid: d2ca67cac709dff4b9aef64504f47b6e, type: 3}
   attackRange: 0
   attackDelay: 0
   target: {fileID: 0}
@@ -1303,67 +1238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8a1c2263fa6004390197b36865ff95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefab: {fileID: -7407935984590434150, guid: 3209575261ceff24baa83ef6969b6afc, type: 3}
   attackRange: 0
   attackDelay: 0
   target: {fileID: 0}
   timer: 0
---- !u!1 &1969939448
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1969939449}
-  m_Layer: 0
-  m_Name: BulletWaitPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1969939449
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1969939448}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1191947159}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2137022566
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2137022567}
-  m_Layer: 0
-  m_Name: BulletUsePool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2137022567
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137022566}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1191947159}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
