@@ -2,39 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    private static GameManager instance = null;
-
     public float playerDefaultDamage;
-
-    private void Awake()
-    {
-        if ( instance == null )
-        {
-            instance = this;
-            DontDestroyOnLoad( this.gameObject );
-        }
-        else
-        {
-            Destroy( this.gameObject );
-        }
-    }
 
     private void Start()
     {
         playerDefaultDamage = 10.0f;
-    }
-
-    public static GameManager Instance
-    {
-        get
-        {
-            if ( instance == null )
-                return null;
-
-            return instance;
-        }
     }
 
     void Update()
