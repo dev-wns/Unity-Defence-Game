@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class BubbleBullet : Bullet
 {
-    public float attackRange = 300.0f;
-
-    protected override void Attack()
+    public override void Ability( Enemy _target )
     {
-        Vector3 pos = this.transform.position;
-
         foreach ( Enemy enemy in EnemyObjectPool.Instance.GetEnemyUsePool() )
         {
-            Debug.Log( enemy.name + " : " + Vector2.Distance( pos, enemy.transform.position ) );
-            if ( Vector2.Distance( pos, enemy.transform.position ) <= attackRange )
+            if ( Vector2.Distance( _target.transform.position, enemy.transform.position ) <= range )
             {
-                Slow slow = enemy.debuffs[0] as Slow;
-                slow.Run( 100.0f, 3.0f );
+                StartCoroutine( enemy.Slow( 100.0f, 3.0f ) );
             }
         }
     }

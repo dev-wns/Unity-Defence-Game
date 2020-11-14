@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 8466752744194947495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.84, y: 4.39, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
   - {fileID: 7642462732357690292}
   m_Father: {fileID: 0}
@@ -98,10 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  timer: 0
-  lifeTime: 0
   direction: {x: 0, y: 0, z: 0}
-  isCrash: 0
+  cols: []
+  type: 0
   attackRange: 100
 --- !u!61 &2997356034374379221
 BoxCollider2D:

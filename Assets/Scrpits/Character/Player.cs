@@ -28,7 +28,11 @@ public class Player : MonoBehaviour
             isAttack = !isAttack;
         }
 
-        if ( isAttack == false ) return;
+        if ( isAttack == false )
+        {
+            return;
+        }
+
         timer += Time.deltaTime;
         if ( timer >= attackDelay )
         {
@@ -52,6 +56,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
+
         Vector2 trans = this.transform.position;
         Vector2 direction = ( target.transform.position - this.transform.position ).normalized;
         BulletObjectPool.Instance.Spawn( prefab, trans, direction );

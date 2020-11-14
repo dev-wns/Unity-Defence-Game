@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isApply: 0
+  amount: 0
   duration: 1
-  timer: {fileID: 3151591118063485761, guid: 90f00507486baf745b9535a844dd8bbc, type: 3}
-  originSpeed: -11248
-  slowAmount: 100
+  timer: 0

@@ -124,5 +124,3 @@ MonoBehaviour:
   originSpeed: 0
   moveSpeed: 0
   healthPoint: 0
-  debuffs:
-  - {fileID: 2007772785135118410, guid: 1dc98b6863855fb4ab3046da68fa3394, type: 3}

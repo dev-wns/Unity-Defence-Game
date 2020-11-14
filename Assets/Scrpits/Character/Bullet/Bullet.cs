@@ -2,20 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum BulletType { Default, Bubble, Dark, Explosion, Flame, Lightning }
 public class Bullet : MonoBehaviour
 {
-    public float speed;
-    public float timer;
-    public float lifeTime;
-    public Vector3 direction;
+    private bool isCrash;
 
-    public bool isCrash;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private Vector3 direction;
+
+    private float timer;
+    private float lifeTime;
+    protected float range;
+
+    public void Initialize( Vector2 _position, Vector2 _direction )
+    {
+        this.direction = _direction;
+        this.transform.position = _position;
+        this.timer = 0.0f;
+    }
 
     private void Awake()
     {
         speed = 2000.0f;
         timer = 0.0f;
         lifeTime = 1.7f;
+        range = 300.0f;
     }
 
     private void Update()
@@ -34,22 +47,14 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D( Collider2D other )
+    private void OnTriggerEnter2D( Collider2D _other )
     {
-        if ( other.transform.CompareTag( "Enemy" ) == true )
+        if ( _other.transform.CompareTag( "Enemy" ) == true )
         {
-            Attack();
             isCrash = true;
             timer = 0.0f;
         }
     }
 
-    protected virtual void Attack() { }
-
-    public void SetBullet( Vector2 _position, Vector2 _direction )
-    {
-        this.direction = _direction;
-        this.transform.position = _position;
-        this.timer = 0.0f;
-    }
+    public virtual void Ability( Enemy _target ) { }
 }
