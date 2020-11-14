@@ -11,18 +11,18 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float healthPoint;
 
-    public IEnumerator Slow( float _amount, float _duration )
+    List<Debuff> debuffs = new List<Debuff>();
+
+    public Debuff GetDebuff( DebuffType _type )
     {
-        if ( originSpeed - _amount <= 0 )
+        foreach( Debuff debuff in debuffs )
         {
-            yield return null;
+            if ( debuff.GetDebuffType() == _type )
+            {
+                return debuff;
+            }
         }
-
-        moveSpeed = originSpeed - _amount;
-
-        yield return new WaitForSeconds( _duration );
-
-        moveSpeed = originSpeed;
+        return null;
     }
 
     public void Initialize( float _hp, float _speed )
@@ -41,6 +41,8 @@ public class Enemy : MonoBehaviour
     {
         originSpeed = Random.Range( 110, 200 );
         moveSpeed = originSpeed;
+
+        debuffs.Add( new Debuff( DebuffType.Slow ) );
     }
 
     private void OnTriggerEnter2D( Collider2D _col )
@@ -59,10 +61,17 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        foreach ( Debuff debuff in debuffs )
+        {
+            debuff.Update();
+        }
+
         if ( healthPoint <= 0.0f )
         {
             EnemyObjectPool.Instance.Despawn( this );
         }
+
+        moveSpeed = originSpeed - GetDebuff( DebuffType.Slow ).GetAmount();
         this.transform.Translate( Vector2.down * moveSpeed * Time.deltaTime );
     }
 }

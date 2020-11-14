@@ -10,7 +10,7 @@ public class BubbleBullet : Bullet
         {
             if ( Vector2.Distance( _target.transform.position, enemy.transform.position ) <= range )
             {
-                StartCoroutine( enemy.Slow( 100.0f, 3.0f ) );
+                enemy.GetDebuff( DebuffType.Slow )?.Initialize( 100.0f, 3.0f );
             }
         }
     }

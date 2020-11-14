@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public float playerDefaultDamage;
-    [SerializeField]
     private LinkedList<Enemy> enemies = new LinkedList<Enemy>();
+
+    public float playerDefaultDamage;
 
     public LinkedList<Enemy> GetEnemies()
     {

@@ -55,7 +55,6 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         enemy.transform.parent = usePool.transform;
         enemy.gameObject.SetActive( true );
         GameManager.Instance.GetEnemies().AddLast( enemy );
-
         return enemy;
     }
 
@@ -65,6 +64,7 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         _enemy.transform.parent = waitPool.transform;
         _enemy.gameObject.SetActive( false );
         GameManager.Instance.GetEnemies().Remove( _enemy );
+        _enemy.StopAllCoroutines();
         pool.Push( _enemy );
     }
 }

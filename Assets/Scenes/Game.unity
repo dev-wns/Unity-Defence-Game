@@ -259,7 +259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &344322319
 Transform:
   m_ObjectHideFlags: 0
@@ -336,11 +336,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8298886324792120186, guid: 784b2d6006bc4e641a2e9ce7e914d744, type: 3}
-  attackRange: 0
-  attackDelay: 0
-  isAttack: 1
-  target: {fileID: 0}
-  timer: 0
 --- !u!1 &526590403
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,11 +431,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 220364437594885979, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
-  attackRange: 0
-  attackDelay: 0
-  isAttack: 1
-  target: {fileID: 0}
-  timer: 0
 --- !u!1 &643342009
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,9 +475,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabEnemy: {fileID: -4791972751357091598, guid: b0717c021efc80943b86d88c07a4b27f, type: 3}
-  enemyUsePool: []
-  enemyWaitPool: []
-  allocateCount: 0
 --- !u!1 &679942188
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &732608051
 Transform:
   m_ObjectHideFlags: 0
@@ -713,11 +700,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: -3338040007211589096, guid: 75d1bdc44a6d78948a3f1af7a80f9c0e, type: 3}
-  attackRange: 0
-  attackDelay: 0
-  isAttack: 1
-  target: {fileID: 0}
-  timer: 0
 --- !u!1 &914263715
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1546382459
 Transform:
   m_ObjectHideFlags: 0
@@ -1045,11 +1027,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: -6259246052260382667, guid: d2ca67cac709dff4b9aef64504f47b6e, type: 3}
-  attackRange: 0
-  attackDelay: 0
-  isAttack: 1
-  target: {fileID: 0}
-  timer: 0
 --- !u!1 &1789333685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,7 +1089,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1952328079
 Transform:
   m_ObjectHideFlags: 0
@@ -1189,8 +1166,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: -7407935984590434150, guid: 3209575261ceff24baa83ef6969b6afc, type: 3}
-  attackRange: 0
-  attackDelay: 0
-  isAttack: 1
-  target: {fileID: 0}
-  timer: 0

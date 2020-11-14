@@ -6,9 +6,10 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
 {
     public Bullet prefabBullet;
 
+    // 할당 된 전체 풀
     private Dictionary<string, Stack<Bullet>> pool = new Dictionary<string, Stack<Bullet>>();
 
-    // 할당된 인스턴스 프리팹 오브젝트 관리용
+    // 풀링 된 오브젝트를 자식오브젝트로 연결 시켜줄 부모 오브젝트
     private Dictionary<string, GameObject> usePool  = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> waitPool = new Dictionary<string, GameObject>();
 

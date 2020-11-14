@@ -10,9 +10,7 @@ public class Player : MonoBehaviour
     private float attackDelay;
     private bool isAttack;
 
-    // 범위에 들어온 타겟
     private Enemy target;
-
     private float timer;
 
     private void Awake()
@@ -20,6 +18,29 @@ public class Player : MonoBehaviour
         isAttack = true;
         attackRange = 1500.0f;
         attackDelay = Random.Range( 0.1f, 1.0f );
+
+        StartCoroutine( Attack() );
+    }
+
+    IEnumerator Attack()
+    {
+        while ( true )
+        {
+            if ( isAttack == true )
+            {
+                foreach ( Enemy enemy in GameManager.Instance.GetEnemies() )
+                {
+                    if ( Vector3.Distance( this.transform.position, enemy.transform.position ) <= attackRange )
+                    {
+                        target = enemy;
+                        break;
+                    }
+                }
+
+                AttackToEnemy();
+            }
+            yield return new WaitForSeconds( attackDelay );
+        }
     }
 
     private void Update()
@@ -32,22 +53,6 @@ public class Player : MonoBehaviour
         if ( isAttack == false )
         {
             return;
-        }
-
-        timer += Time.deltaTime;
-        if ( timer >= attackDelay )
-        {
-            foreach ( Enemy enemy in GameManager.Instance.GetEnemies() )
-            {
-                if ( Vector3.Distance( this.transform.position, enemy.transform.position ) <= attackRange )
-                {
-                    target = enemy;
-                    break;
-                }
-            }
-
-            AttackToEnemy();
-            timer = 0.0f;
         }
     }
 
