@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public float originSpeed;
     public float moveSpeed;
     public float healthPoint;
-    public Bullet hitBullet;
-
-    public bool isSlow = false;
+    public List<Debuff> debuffs = new List<Debuff>();
 
     private void Awake()
     {
-        moveSpeed = Random.Range( 100, 250 );
-        //moveSpeed = 0;
+        // debuffs.Add( new Slow() );
+        originSpeed = Random.Range( 100, 250 );
+        moveSpeed = originSpeed;
     }
 
-    private void OnTriggerEnter( Collider other )
-    {
-        if ( other.transform.CompareTag( "Bullet" ) )
+    private void OnTriggerEnter2D( Collider2D collision )
+{
+    if ( collision.transform.CompareTag( "Bullet" ) )
         {
             healthPoint -= GameManager.Instance.playerDefaultDamage;
         }
 
-        if ( other.transform.CompareTag( "DeathLine" ) )
+        if ( collision.transform.CompareTag( "DeathLine" ) )
         {
             EnemyObjectPool.Instance.Despawn( this );
         }
@@ -31,22 +31,16 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if ( healthPoint <= 0.0f )
-            EnemyObjectPool.Instance.Despawn( this );
-
-        this.transform.Translate( new Vector3( 0, -1, 0 ) * moveSpeed * Time.deltaTime );
-    }
-
-    public IEnumerator Slow( float value, float _time )
-    {
-        if ( isSlow == false )
+        foreach ( Debuff debuff in debuffs )
         {
-            moveSpeed -= value;
-            isSlow = true;
+            debuff.Apply( this );
+        }
+    
+        if ( healthPoint <= 0.0f )
+        {
+            EnemyObjectPool.Instance.Despawn( this );
         }
 
-        yield return new WaitForSeconds( _time );
-        moveSpeed += value;
-        isSlow = false;
+        this.transform.Translate( new Vector3( 0.0f, -1.0f, 0.0f ) * moveSpeed * Time.deltaTime );
     }
 }

@@ -10,7 +10,7 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
     public List<Enemy> enemyUsePool = new List<Enemy>();
     // 대기중인 오브젝트 리스트
     public List<Enemy> enemyWaitPool = new List<Enemy>();
-
+    
     // 적 생성 개수
     public int allocateCount;
 
@@ -29,7 +29,6 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         WaitPool = new GameObject( typeof( Enemy ).ToString() + "WaitPool" );
         WaitPool.transform.parent = this.transform;
 
-
         allocateCount = 10;
     }
 
@@ -43,6 +42,7 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         for ( int count = 0; count < allocateCount; count++ )
         {
             Enemy enemy = Instantiate<Enemy>( prefabEnemy );
+            enemy.name = "Enemy_" + count.ToString();
             enemy.transform.parent = WaitPool.transform;
             enemy.gameObject.SetActive( false );
             enemyWaitPool.Add( enemy );
@@ -53,7 +53,9 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
     {
         // 리스트에 총알이 없다면 새로 생성
         if ( enemyWaitPool.Count <= 0 )
+        {
             Allocate();
+        }
 
         Enemy enemy = enemyWaitPool[0];
         enemy.transform.position = position;

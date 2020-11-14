@@ -352,6 +352,7 @@ MonoBehaviour:
   prefab: {fileID: 8298886324792120186, guid: 784b2d6006bc4e641a2e9ce7e914d744, type: 3}
   attackRange: 0
   attackDelay: 0
+  isAttack: 1
   target: {fileID: 0}
   timer: 0
 --- !u!1 &526590403
@@ -365,8 +366,8 @@ GameObject:
   - component: {fileID: 526590404}
   - component: {fileID: 526590407}
   - component: {fileID: 526590406}
-  - component: {fileID: 526590405}
   - component: {fileID: 526590408}
+  - component: {fileID: 526590405}
   m_Layer: 0
   m_Name: Character Slot 4
   m_TagString: Untagged
@@ -465,6 +466,7 @@ MonoBehaviour:
   prefab: {fileID: 220364437594885979, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
   attackRange: 0
   attackDelay: 0
+  isAttack: 1
   target: {fileID: 0}
   timer: 0
 --- !u!1 &643342009
@@ -737,6 +739,7 @@ MonoBehaviour:
   prefab: {fileID: -3338040007211589096, guid: 75d1bdc44a6d78948a3f1af7a80f9c0e, type: 3}
   attackRange: 0
   attackDelay: 0
+  isAttack: 1
   target: {fileID: 0}
   timer: 0
 --- !u!1 &914263715
@@ -815,8 +818,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabBullet: {fileID: -3338040007211589096, guid: 75d1bdc44a6d78948a3f1af7a80f9c0e, type: 3}
-  bulletUsePool: []
-  bulletWaitPool: []
 --- !u!1 &1440648262
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,6 +1085,7 @@ MonoBehaviour:
   prefab: {fileID: -6259246052260382667, guid: d2ca67cac709dff4b9aef64504f47b6e, type: 3}
   attackRange: 0
   attackDelay: 0
+  isAttack: 1
   target: {fileID: 0}
   timer: 0
 --- !u!1 &1789333685
@@ -1141,8 +1143,8 @@ GameObject:
   - component: {fileID: 1952328079}
   - component: {fileID: 1952328082}
   - component: {fileID: 1952328081}
-  - component: {fileID: 1952328080}
   - component: {fileID: 1952328083}
+  - component: {fileID: 1952328080}
   m_Layer: 0
   m_Name: Character Slot 5
   m_TagString: Untagged
@@ -1241,5 +1243,6 @@ MonoBehaviour:
   prefab: {fileID: -7407935984590434150, guid: 3209575261ceff24baa83ef6969b6afc, type: 3}
   attackRange: 0
   attackDelay: 0
+  isAttack: 1
   target: {fileID: 0}
   timer: 0

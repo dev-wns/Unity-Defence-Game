@@ -42,7 +42,9 @@ public class ObjectPool<Type> : MonoBehaviour // : Singleton<Type> where Type : 
     {
         // 리스트에 오브젝트가 없다면 새로 생성
         if ( objectWaitPool.Count <= 0 )
+        {
             Allocate();
+        }
 
         Type obj = objectWaitPool[0];
         objectUsePool.Add( obj );

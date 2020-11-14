@@ -27,11 +27,14 @@ public class Bullet : MonoBehaviour
             isCrash = false;
             BulletObjectPool.Instance.Despawn( this );
         }
+
         if ( isCrash == false )
+        {
             this.transform.Translate( direction * speed * Time.deltaTime );
+        }
     }
 
-    private void OnTriggerEnter( Collider other )
+    private void OnTriggerEnter2D( Collider2D other )
     {
         if ( other.transform.CompareTag( "Enemy" ) == true )
         {
@@ -43,7 +46,7 @@ public class Bullet : MonoBehaviour
 
     protected virtual void Attack() { }
 
-    public void SetBullet( Vector3 _position, Vector3 _direction )
+    public void SetBullet( Vector2 _position, Vector2 _direction )
     {
         this.direction = _direction;
         this.transform.position = _position;

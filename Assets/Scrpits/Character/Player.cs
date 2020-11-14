@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
     public float attackRange;
     public float attackDelay;
+    public bool isAttack = true;
 
     // 범위에 들어온 타겟
     public Enemy target;
@@ -22,6 +23,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if ( Input.GetMouseButtonDown( 1 ) == true )
+        {
+            isAttack = !isAttack;
+        }
+
+        if ( isAttack == false ) return;
         timer += Time.deltaTime;
         if ( timer >= attackDelay )
         {
@@ -41,10 +48,13 @@ public class Player : MonoBehaviour
 
     protected virtual void AttackToEnemy()
     {
-        if ( target == null ) return;
-
-        Vector3 direction = ( target.transform.position - this.transform.position ).normalized;
-        BulletObjectPool.Instance.Spawn( prefab, this.transform.position, direction );
+        if ( target == null )
+        {
+            return;
+        }
+        Vector2 trans = this.transform.position;
+        Vector2 direction = ( target.transform.position - this.transform.position ).normalized;
+        BulletObjectPool.Instance.Spawn( prefab, trans, direction );
         
         target = null;
     }
