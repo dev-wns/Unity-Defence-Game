@@ -5,8 +5,15 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public float playerDefaultDamage;
+    [SerializeField]
+    private LinkedList<Enemy> enemies = new LinkedList<Enemy>();
 
-    private void Start()
+    public LinkedList<Enemy> GetEnemies()
+    {
+        return enemies;
+    }
+
+    private void Awake()
     {
         playerDefaultDamage = 10.0f;
     }
@@ -15,8 +22,7 @@ public class GameManager : Singleton<GameManager>
     {
         if ( Input.GetMouseButtonDown( 0 ) == true )
         {
-            EnemyObjectPool.Instance.Spawn( new Vector3( Random.Range( -500, 500 ), 960, 0 ) );
-            // EnemyObjectPool.Instance.Spawn( new Vector3( 0, 0, 0 ) );
+            EnemyObjectPool.Instance.Spawn( new Vector2( Random.Range( -500, 500 ), 960 ) );
         }
     }
 }

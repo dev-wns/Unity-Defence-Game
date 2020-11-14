@@ -6,7 +6,7 @@ public class BubbleBullet : Bullet
 {
     public override void Ability( Enemy _target )
     {
-        foreach ( Enemy enemy in EnemyObjectPool.Instance.GetEnemyUsePool() )
+        foreach ( Enemy enemy in GameManager.Instance.GetEnemies() )
         {
             if ( Vector2.Distance( _target.transform.position, enemy.transform.position ) <= range )
             {

@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
         timer += Time.deltaTime;
         if ( timer >= attackDelay )
         {
-            foreach ( Enemy enemy in EnemyObjectPool.Instance.GetEnemyUsePool() )
+            foreach ( Enemy enemy in GameManager.Instance.GetEnemies() )
             {
                 if ( Vector3.Distance( this.transform.position, enemy.transform.position ) <= attackRange )
                 {

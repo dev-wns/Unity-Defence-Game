@@ -7,11 +7,9 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
     public Enemy prefabEnemy;
 
     // 사용중인 오브젝트 리스트
+    [SerializeField]
     private Stack<Enemy> pool = new Stack<Enemy>();
-    // 대기중인 오브젝트 리스트
-    // private Stack<Enemy> enemyWaitPool = new Stack<Enemy>();
 
-    // 적 생성 개수
     private int allocateCount;
 
     private GameObject usePool;
@@ -46,7 +44,6 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
 
     public Enemy Spawn( Vector3 _pos )
     {
-        // 리스트에 총알이 없다면 새로 생성
         if ( pool.Count <= 0 )
         {
             Allocate();
@@ -57,15 +54,17 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         enemy.transform.position = _pos;
         enemy.transform.parent = usePool.transform;
         enemy.gameObject.SetActive( true );
+        GameManager.Instance.GetEnemies().AddLast( enemy );
 
         return enemy;
     }
 
-    public void Despawn( Enemy enemy )
+    public void Despawn( Enemy _enemy )
     {
-        enemy.transform.position = new Vector3( 0, 1000, 0 );
-        enemy.transform.parent = waitPool.transform;
-        enemy.gameObject.SetActive( false );
-        pool.Push( enemy );
+        _enemy.transform.position = new Vector3( 0, 1000, 0 );
+        _enemy.transform.parent = waitPool.transform;
+        _enemy.gameObject.SetActive( false );
+        GameManager.Instance.GetEnemies().Remove( _enemy );
+        pool.Push( _enemy );
     }
 }
