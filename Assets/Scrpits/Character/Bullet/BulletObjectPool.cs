@@ -6,25 +6,27 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
 {
     public Bullet prefabBullet;
 
-    // 사용중인 풀
-    private Dictionary<string, List<Bullet>> bulletUsePool = new Dictionary<string, List<Bullet>>();
-    // 대기중인 풀
-    private Dictionary<string, List<Bullet>> bulletWaitPool = new Dictionary<string, List<Bullet>>();
+    private Dictionary<string, Stack<Bullet>> pool = new Dictionary<string, Stack<Bullet>>();
 
+    // 할당된 인스턴스 프리팹 오브젝트 관리용
     private Dictionary<string, GameObject> usePool  = new Dictionary<string, GameObject>();
     private Dictionary<string, GameObject> waitPool = new Dictionary<string, GameObject>();
 
     // 생성할 개수
-    private int allocateCount = 10;
+    private int allocateCount;
 
-    public void Allocate( Bullet _prefab )
+    private void Awake()
+    {
+        allocateCount = 10;
+    }
+
+    private void Allocate( Bullet _prefab )
     {
         string name = _prefab.GetType().Name;
 
-        if ( bulletWaitPool.ContainsKey( name ) == false )
+        if ( pool.ContainsKey( name ) == false )
         {
-            bulletUsePool.Add( name, new List<Bullet>() );
-            bulletWaitPool.Add( name, new List<Bullet>() );
+            pool.Add( name, new Stack<Bullet>() );
 
             usePool.Add( name, new GameObject( name + "UsePool" ) );
             usePool[name].transform.parent = this.transform;
@@ -38,7 +40,8 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
             Bullet bullet = Instantiate<Bullet>( _prefab );
             bullet.transform.parent = waitPool[name].transform;
             bullet.gameObject.SetActive( false );
-            bulletWaitPool[name].Add( bullet );
+            //bulletWaitPool[name].Push( bullet );
+            pool[name].Push( bullet );
         }
     }
 
@@ -46,16 +49,14 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
     {
         string name = _bullet.GetType().Name;
         // 리스트에 총알이 없다면 새로 생성
-        if ( bulletWaitPool.ContainsKey( name ) == false || bulletWaitPool[name].Count <= 0 )
+        if ( pool.ContainsKey( name ) == false || pool[name].Count <= 0 )
         {
             Allocate( _bullet );
         }
 
-        Bullet bullet = bulletWaitPool[name][0];
+        Bullet bullet = pool[name].Pop();
         bullet.Initialize( _pos, _dir );
         bullet.transform.parent = usePool[name].transform;
-        bulletUsePool[name].Add( bullet );
-        bulletWaitPool[name].Remove( bullet );
         bullet.gameObject.SetActive( true );
 
         return bullet;
@@ -67,8 +68,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
 
         _bullet.transform.position = new Vector2( 0, -1000.0f );
         _bullet.transform.parent = waitPool[name].transform;
-        bulletWaitPool[name].Add( _bullet );
-        bulletUsePool[name].Remove( _bullet );
         _bullet.gameObject.SetActive( false );
+        pool[name].Push( _bullet );
     }
 }

@@ -6,17 +6,18 @@ public class Player : MonoBehaviour
 {
     public Bullet prefab;
 
-    public float attackRange;
-    public float attackDelay;
-    public bool isAttack = true;
+    private float attackRange;
+    private float attackDelay;
+    private bool isAttack;
 
     // 범위에 들어온 타겟
-    public Enemy target;
+    private Enemy target;
 
-    public float timer;
+    private float timer;
 
     private void Awake()
     {
+        isAttack = true;
         attackRange = 1500.0f;
         attackDelay = Random.Range( 0.1f, 1.0f );
     }
