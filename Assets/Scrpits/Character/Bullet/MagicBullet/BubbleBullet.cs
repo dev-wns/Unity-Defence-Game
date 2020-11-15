@@ -5,7 +5,7 @@ using UnityEngine;
 public class BubbleBullet : Bullet
 {
     [SerializeField]
-    private float slowPercent = 10.0f;
+    private float slowPercent = 75.0f;
 
     public override void Ability( Enemy _target )
     {

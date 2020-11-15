@@ -12,10 +12,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float healthPoint;
 
-    List<Debuff> debuffs = new List<Debuff>();
-
-    public GameObject hudDamageTextPrefab;
-    public GameObject damageTextParent;
+    private List<Debuff> debuffs = new List<Debuff>();
 
     public Debuff GetDebuff( DebuffType _type )
     {
@@ -40,39 +37,29 @@ public class Enemy : MonoBehaviour
         if ( _damage >= 0.0f )
         {
             healthPoint -= _damage;
-            GameObject hudText = Instantiate( hudDamageTextPrefab ); // 생성할 텍스트 오브젝트
-            hudText.transform.SetParent( damageTextParent.transform );
-
-            Vector2 pos = new Vector2( this.transform.position.x + 540 - Random.Range( -50.0f, 50.0f ), this.transform.position.y + ( this.transform.localScale.y * 0.5f ) + 960 );
-            hudText.transform.position = pos; // 표시될 위치
-            hudText.GetComponent<DamageText>().damage = ( int )_damage; // 데미지 전달
+            DamageTextPool.Instance.Spawn( this.transform.position, _damage );
         }
-    }
-
-    private void Awake()
-    {
-        originSpeed = Random.Range( 110, 200 );
-        moveSpeed = originSpeed;
-
-        debuffs.Add( new Debuff( DebuffType.Slow ) );
     }
 
     private void Start()
     {
-        damageTextParent = GameObject.FindGameObjectWithTag( "DamageText" );
+        originSpeed = Random.Range( 110.0f, 200.0f );
+        moveSpeed = originSpeed;
+
+        debuffs.Add( new Debuff( DebuffType.Slow ) );
     }
 
     private void OnTriggerEnter2D( Collider2D _col )
     {
         if ( _col.transform.CompareTag( "Bullet" ) )
         {
-            TakeDamage( GameManager.Instance.playerDefaultDamage );
+            TakeDamage( GameManager.Instance.GetDamage() );
             _col.GetComponent<Bullet>().Ability( this );
         }
 
         if ( _col.transform.CompareTag( "DeathLine" ) )
         {
-            EnemyObjectPool.Instance.Despawn( this );
+            OnDie();
         }
     }
 
@@ -85,12 +72,21 @@ public class Enemy : MonoBehaviour
 
         if ( healthPoint <= 0.0f )
         {
-            EnemyObjectPool.Instance.Despawn( this );
+            OnDie();
         }
 
         float slowPercent = GetDebuff( DebuffType.Slow ).GetAmount();
         moveSpeed = originSpeed * ( 1.0f - ( slowPercent * 0.01f ) );
 
         this.transform.Translate( Vector2.down * moveSpeed * Time.deltaTime );
+    }
+
+    public void OnDie()
+    {
+        foreach( Debuff debuff in debuffs )
+        {
+            debuff.OnStop();
+        }
+        EnemyObjectPool.Instance.Despawn( this );
     }
 }

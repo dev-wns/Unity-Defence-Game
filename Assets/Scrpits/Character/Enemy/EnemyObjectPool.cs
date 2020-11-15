@@ -4,45 +4,41 @@ using UnityEngine;
 
 public class EnemyObjectPool : Singleton<EnemyObjectPool>
 {
-    public Enemy prefabEnemy;
+    // 복사될 프리팹
+    public Enemy prefab;
 
     // 사용중인 오브젝트 리스트
-    [SerializeField]
     private Stack<Enemy> pool = new Stack<Enemy>();
 
     private int allocateCount;
+    private int increaseCount;
 
     private GameObject usePool;
     private GameObject waitPool;
 
-    private void Awake()
-    {
-        usePool = new GameObject( typeof( Enemy ).ToString() + "UsePool" );
-        usePool.transform.parent = this.transform;
-        waitPool = new GameObject( typeof( Enemy ).ToString() + "WaitPool" );
-        waitPool.transform.parent = this.transform;
-
-        allocateCount = 10;
-    }
-
     private void Start()
     {
-        Allocate();
-    }
+        usePool = new GameObject( typeof( Enemy ).ToString() + "UsePool" );
+        usePool.transform.SetParent( this.transform );
+        waitPool = new GameObject( typeof( Enemy ).ToString() + "WaitPool" );
+        waitPool.transform.SetParent( this.transform );
+
+        allocateCount = 10;
+}
 
     private void Allocate()
     {
         for ( int count = 0; count < allocateCount; count++ )
         {
-            Enemy enemy = Instantiate<Enemy>( prefabEnemy );
-            enemy.name = "Enemy_" + count.ToString();
-            enemy.transform.parent = waitPool.transform;
+            Enemy enemy = Instantiate<Enemy>( prefab );
+            enemy.name = prefab.name + increaseCount++.ToString();
+            enemy.transform.SetParent( waitPool.transform );
             enemy.gameObject.SetActive( false );
             pool.Push( enemy );
         }
     }
 
-    public Enemy Spawn( Vector3 _pos )
+    public Enemy Spawn( Vector2 _pos )
     {
         if ( pool.Count <= 0 )
         {
@@ -50,9 +46,9 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         }
 
         Enemy enemy = pool.Pop();
-        enemy.Initialize( 100000.0f, Random.Range( 110, 150 ) );
+        enemy.Initialize( 100000.0f, Random.Range( 110.0f, 150.0f ) );
         enemy.transform.position = _pos;
-        enemy.transform.parent = usePool.transform;
+        enemy.transform.SetParent( usePool.transform );
         enemy.gameObject.SetActive( true );
         GameManager.Instance.GetEnemies().AddLast( enemy );
         return enemy;
@@ -60,11 +56,10 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
 
     public void Despawn( Enemy _enemy )
     {
-        _enemy.transform.position = new Vector3( 0, 1000, 0 );
-        _enemy.transform.parent = waitPool.transform;
+        _enemy.transform.position = new Vector2( 0.0f, 1000.0f );
+        _enemy.transform.SetParent( waitPool.transform );
         _enemy.gameObject.SetActive( false );
         GameManager.Instance.GetEnemies().Remove( _enemy );
-        _enemy.StopAllCoroutines();
         pool.Push( _enemy );
     }
 }

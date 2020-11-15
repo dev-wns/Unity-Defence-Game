@@ -147,7 +147,7 @@ MonoBehaviour:
   speed: 0
   direction: {x: 0, y: 0, z: 0}
   duration: 3
-  slowPercent: 10
+  slowPercent: 75
 --- !u!1001 &7642462732357302578
 PrefabInstance:
   m_ObjectHideFlags: 0

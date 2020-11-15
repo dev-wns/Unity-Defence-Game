@@ -28,4 +28,10 @@ public class Timer
 
         return isRun;
     }
+
+    public void OnStop()
+    {
+        isRun = false;
+        timer = 0.0f;
+    }
 }

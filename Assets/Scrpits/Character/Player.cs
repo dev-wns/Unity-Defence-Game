@@ -13,11 +13,11 @@ public class Player : MonoBehaviour
     private Enemy target;
     private float timer;
 
-    private void Awake()
+    private void Start()
     {
         isAttack = true;
         attackRange = 1500.0f;
-        attackDelay = Random.Range( 0.1f, 1.0f );
+        attackDelay = 0.1f;// Random.Range( 0.1f, 1.0f );
 
         StartCoroutine( Attack() );
     }

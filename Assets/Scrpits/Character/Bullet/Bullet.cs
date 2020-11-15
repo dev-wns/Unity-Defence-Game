@@ -26,14 +26,14 @@ public class Bullet : MonoBehaviour
         this.timer = 0.0f;
     }
 
-    private void Awake()
+    private void Start()
     {
         this.speed = 2000.0f;
         this.timer = 0.0f;
         this.lifeTime = 1.7f;
         this.range = 300.0f;
         this.duration = 3.0f;
-}
+    }
 
     private void Update()
     {
