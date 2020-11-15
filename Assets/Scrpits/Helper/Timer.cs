@@ -9,6 +9,11 @@ public class Timer
     [SerializeField]
     private float timer = 0.0f;
 
+    public bool IsRun()
+    {
+        return isRun;
+    }
+
     public void Initialize( float _duration )
     {
         if ( timer <= _duration )

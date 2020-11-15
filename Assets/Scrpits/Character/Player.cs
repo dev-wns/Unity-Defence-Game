@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeReference]
     public Bullet prefab;
 
     private float attackRange;

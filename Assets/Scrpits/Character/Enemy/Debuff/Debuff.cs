@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum DebuffType : int { Slow, }
+public enum DebuffType : int { Slow, Stun, }
 public class Debuff
 {
     private Timer timer = new Timer();

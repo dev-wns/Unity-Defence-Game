@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   direction: {x: 0, y: 0, z: 0}
+  range: 300
   duration: 3
 --- !u!1001 &7543671137780807852
 PrefabInstance:
@@ -154,6 +155,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1258811615011710119}
     m_Modifications:
+    - target: {fileID: 100000, guid: d205bba4d197a5f45a64abfcc6123c20, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: d205bba4d197a5f45a64abfcc6123c20, type: 3}
       propertyPath: m_Name
       value: Flame
@@ -206,9 +211,17 @@ PrefabInstance:
       propertyPath: InitialModule.startSize.scalar
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: d205bba4d197a5f45a64abfcc6123c20, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: d205bba4d197a5f45a64abfcc6123c20, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 150
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: d205bba4d197a5f45a64abfcc6123c20, type: 3}
+      propertyPath: lengthInSec
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d205bba4d197a5f45a64abfcc6123c20, type: 3}

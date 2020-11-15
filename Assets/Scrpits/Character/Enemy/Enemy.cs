@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
         moveSpeed = originSpeed;
 
         debuffs.Add( new Debuff( DebuffType.Slow ) );
+        debuffs.Add( new Debuff( DebuffType.Stun ) );
     }
 
     private void OnTriggerEnter2D( Collider2D _col )
@@ -75,8 +76,15 @@ public class Enemy : MonoBehaviour
             OnDie();
         }
 
+        // Debuff Speed Decrease
         float slowPercent = GetDebuff( DebuffType.Slow ).GetAmount();
         moveSpeed = originSpeed * ( 1.0f - ( slowPercent * 0.01f ) );
+
+        float stunAmount = GetDebuff( DebuffType.Stun ).GetAmount();
+        if ( stunAmount > 0.0f )
+        {
+            moveSpeed = 0.0f;
+        }
 
         this.transform.Translate( Vector2.down * moveSpeed * Time.deltaTime );
     }

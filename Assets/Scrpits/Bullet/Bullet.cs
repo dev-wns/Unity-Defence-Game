@@ -12,9 +12,10 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private Vector3 direction;
 
-    private float timer;
+    private Timer timer = new Timer();
     private float lifeTime;
-    protected float range;
+    [SerializeField]
+    protected float range = 300.0f;
     [SerializeField]
     protected float duration;
 
@@ -23,23 +24,19 @@ public class Bullet : MonoBehaviour
     {
         this.direction = _direction;
         this.transform.position = _position;
-        this.timer = 0.0f;
+        timer.Initialize( lifeTime );
     }
 
     private void Start()
     {
         this.speed = 2000.0f;
-        this.timer = 0.0f;
         this.lifeTime = 1.7f;
-        this.range = 300.0f;
         this.duration = 3.0f;
     }
 
     private void Update()
     {
-        this.timer += Time.deltaTime;
-
-        if ( this.timer >= lifeTime )
+        if ( timer.Update() == false )
         {
             isCrash = false;
             BulletObjectPool.Instance.Despawn( this );
@@ -56,7 +53,6 @@ public class Bullet : MonoBehaviour
         if ( _other.transform.CompareTag( "Enemy" ) == true )
         {
             isCrash = true;
-            timer = 0.0f;
         }
     }
 

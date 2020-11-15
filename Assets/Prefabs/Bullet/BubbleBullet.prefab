@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -9070666548359280519}
   - component: {fileID: 220364437594885979}
   m_Layer: 0
-  m_Name: FantasyEffectBullet
+  m_Name: BubbleBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   direction: {x: 0, y: 0, z: 0}
+  range: 300
   duration: 3
   slowPercent: 75
 --- !u!1001 &7642462732357302578
@@ -205,15 +206,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: 2fdab942587233e42ad5de42efdc56af, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 150
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: 2fdab942587233e42ad5de42efdc56af, type: 3}
+      propertyPath: lengthInSec
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19800002, guid: 2fdab942587233e42ad5de42efdc56af, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 150
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800002, guid: 2fdab942587233e42ad5de42efdc56af, type: 3}
+      propertyPath: lengthInSec
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19800004, guid: 2fdab942587233e42ad5de42efdc56af, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800004, guid: 2fdab942587233e42ad5de42efdc56af, type: 3}
+      propertyPath: lengthInSec
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fdab942587233e42ad5de42efdc56af, type: 3}

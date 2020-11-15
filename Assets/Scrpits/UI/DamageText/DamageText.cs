@@ -15,21 +15,25 @@ public class DamageText : MonoBehaviour
 
     private float horizontalOffset;
     private float verticalOffset;
-    private int damage;
+
+    private float screenWidth;
+    private float screenHeight;
 
     public void Initialize( Vector2 _pos, int _damage )
     {
         timer.Initialize( destroyDuration );
-        transform.position = new Vector2( _pos.x + 540.0f - horizontalOffset,
-                                          _pos.y + 960.0f + verticalOffset );
+        
+        transform.position = new Vector2( _pos.x + screenWidth - horizontalOffset,
+                                          _pos.y + screenHeight + verticalOffset );
 
-        damage = _damage;
-        text.text = damage.ToString();
+        text.text = _damage.ToString();
         alpha.a = 1.0f;
     }
 
     private void Awake()
     {
+        screenWidth = Screen.width * 0.5f;
+        screenHeight = Screen.height * 0.5f;
         text = GetComponent<TextMeshProUGUI>();
     }
 
