@@ -124,3 +124,5 @@ MonoBehaviour:
   originSpeed: 0
   moveSpeed: 0
   healthPoint: 0
+  damageTextParent: {fileID: 0}
+  hudDamageTextPrefab: {fileID: 3873650446117937993, guid: a93c1a375da30de42821b434c257b35f, type: 3}

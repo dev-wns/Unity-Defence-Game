@@ -20,7 +20,6 @@ public class Timer
 
     public bool Update()
     {
-        Debug.Log( timer );
         timer -= Time.deltaTime;
         if ( timer <= 0.0f )
         {

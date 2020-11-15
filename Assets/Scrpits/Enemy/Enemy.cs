@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class Enemy : MonoBehaviour
     private float healthPoint;
 
     List<Debuff> debuffs = new List<Debuff>();
+
+    public GameObject hudDamageTextPrefab;
+    public GameObject damageTextParent;
 
     public Debuff GetDebuff( DebuffType _type )
     {
@@ -34,7 +38,15 @@ public class Enemy : MonoBehaviour
     public void TakeDamage( float _damage )
     {
         if ( _damage >= 0.0f )
+        {
             healthPoint -= _damage;
+            GameObject hudText = Instantiate( hudDamageTextPrefab ); // 생성할 텍스트 오브젝트
+            hudText.transform.SetParent( damageTextParent.transform );
+
+            Vector2 pos = new Vector2( this.transform.position.x + 540 - Random.Range( -50.0f, 50.0f ), this.transform.position.y + ( this.transform.localScale.y * 0.5f ) + 960 );
+            hudText.transform.position = pos; // 표시될 위치
+            hudText.GetComponent<DamageText>().damage = ( int )_damage; // 데미지 전달
+        }
     }
 
     private void Awake()
@@ -45,11 +57,16 @@ public class Enemy : MonoBehaviour
         debuffs.Add( new Debuff( DebuffType.Slow ) );
     }
 
+    private void Start()
+    {
+        damageTextParent = GameObject.FindGameObjectWithTag( "DamageText" );
+    }
+
     private void OnTriggerEnter2D( Collider2D _col )
     {
         if ( _col.transform.CompareTag( "Bullet" ) )
         {
-            healthPoint -= GameManager.Instance.playerDefaultDamage;
+            TakeDamage( GameManager.Instance.playerDefaultDamage );
             _col.GetComponent<Bullet>().Ability( this );
         }
 
