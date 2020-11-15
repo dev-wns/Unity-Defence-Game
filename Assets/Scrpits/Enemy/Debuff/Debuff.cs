@@ -27,7 +27,8 @@ public class Debuff
 
     public void Initialize( float _amount, float _duration )
     {
-        amount = _amount;
+        if ( this.amount < _amount )
+            this.amount = _amount;
         duration = _duration;
         timer.Initialize( duration );
     }

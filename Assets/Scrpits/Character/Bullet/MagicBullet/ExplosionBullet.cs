@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ExplosionBullet : Bullet
 {
-    public float explosionDamage = 100.0f;
+    [SerializeField]
+    private float explosionDamage = 100.0f;
 
     public override void Ability( Enemy _target )
     {
@@ -12,7 +13,8 @@ public class ExplosionBullet : Bullet
         {
             if ( Vector2.Distance( _target.transform.position, enemy.transform.position ) <= range )
             {
-                _target.TakeDamage( explosionDamage );
+                if ( ( range * 0.01f ) <= 0.0f )
+                    _target.TakeDamage( explosionDamage * ( range * 0.01f ) );
             }
         }
     }

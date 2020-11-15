@@ -15,6 +15,9 @@ public class Bullet : MonoBehaviour
     private float timer;
     private float lifeTime;
     protected float range;
+    [SerializeField]
+    protected float duration;
+
 
     public void Initialize( Vector2 _position, Vector2 _direction )
     {
@@ -25,11 +28,12 @@ public class Bullet : MonoBehaviour
 
     private void Awake()
     {
-        speed = 2000.0f;
-        timer = 0.0f;
-        lifeTime = 1.7f;
-        range = 300.0f;
-    }
+        this.speed = 2000.0f;
+        this.timer = 0.0f;
+        this.lifeTime = 1.7f;
+        this.range = 300.0f;
+        this.duration = 3.0f;
+}
 
     private void Update()
     {

@@ -71,7 +71,9 @@ public class Enemy : MonoBehaviour
             EnemyObjectPool.Instance.Despawn( this );
         }
 
-        moveSpeed = originSpeed - GetDebuff( DebuffType.Slow ).GetAmount();
+        float slowPercent = GetDebuff( DebuffType.Slow ).GetAmount();
+        moveSpeed = originSpeed * ( 1.0f - ( slowPercent * 0.01f ) );
+
         this.transform.Translate( Vector2.down * moveSpeed * Time.deltaTime );
     }
 }

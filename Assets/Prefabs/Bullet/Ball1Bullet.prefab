@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3499379770339959588}
   - component: {fileID: 233887186689627611}
   - component: {fileID: 747301944303990084}
-  - component: {fileID: -3338040007211589096}
   - component: {fileID: 7898673929418738146}
   - component: {fileID: 5744085833440497993}
+  - component: {fileID: -3338040007211589096}
   m_Layer: 0
   m_Name: Ball1Bullet
   m_TagString: Bullet
@@ -85,22 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-3338040007211589096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3287618666986549709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 810dbca20927e0144b6df3a3e088d0de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100
-  direction: {x: 0, y: 0, z: 0}
-  cols: []
-  type: 0
 --- !u!61 &7898673929418738146
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148,6 +132,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &-3338040007211589096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3287618666986549709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 810dbca20927e0144b6df3a3e088d0de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  direction: {x: 0, y: 0, z: 0}
+  duration: 3
 --- !u!1001 &2214805468974781098
 PrefabInstance:
   m_ObjectHideFlags: 0

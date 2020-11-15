@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8903919128339761924}
   - component: {fileID: 5206081118970117627}
   - component: {fileID: 4710671963570363748}
-  - component: {fileID: -6259246052260382667}
   - component: {fileID: 6102328069101939473}
   - component: {fileID: 5555335522538517271}
+  - component: {fileID: -6259246052260382667}
   m_Layer: 0
   m_Name: DarkBallBullet
   m_TagString: Bullet
@@ -85,22 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-6259246052260382667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7394540996318419437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20e054ec52d4770498b16a70ac5c9efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  direction: {x: 0, y: 0, z: 0}
-  cols: []
-  type: 0
 --- !u!61 &6102328069101939473
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -148,6 +132,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &-6259246052260382667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394540996318419437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e054ec52d4770498b16a70ac5c9efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  direction: {x: 0, y: 0, z: 0}
+  duration: 3
 --- !u!1001 &9063600649717618340
 PrefabInstance:
   m_ObjectHideFlags: 0

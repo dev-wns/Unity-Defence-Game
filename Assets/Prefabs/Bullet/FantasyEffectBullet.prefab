@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7525601139030338382}
   - component: {fileID: 6619985966180736433}
   - component: {fileID: 5962473616771792174}
-  - component: {fileID: 220364437594885979}
   - component: {fileID: 2997356034374379221}
   - component: {fileID: -9070666548359280519}
+  - component: {fileID: 220364437594885979}
   m_Layer: 0
   m_Name: FantasyEffectBullet
   m_TagString: Bullet
@@ -85,23 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &220364437594885979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8466752744194947495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24942cd5b114ed24c87a116b0fe1d4d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  direction: {x: 0, y: 0, z: 0}
-  cols: []
-  type: 0
-  attackRange: 100
 --- !u!61 &2997356034374379221
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,6 +132,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &220364437594885979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8466752744194947495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24942cd5b114ed24c87a116b0fe1d4d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  direction: {x: 0, y: 0, z: 0}
+  duration: 3
+  slowPercent: 10
 --- !u!1001 &7642462732357302578
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class BubbleBullet : Bullet
 {
+    [SerializeField]
+    private float slowPercent = 10.0f;
+
     public override void Ability( Enemy _target )
     {
         foreach ( Enemy enemy in GameManager.Instance.GetEnemies() )
         {
             if ( Vector2.Distance( _target.transform.position, enemy.transform.position ) <= range )
             {
-                enemy.GetDebuff( DebuffType.Slow )?.Initialize( 100.0f, 3.0f );
+                enemy.GetDebuff( DebuffType.Slow )?.Initialize( slowPercent, duration );
             }
         }
     }

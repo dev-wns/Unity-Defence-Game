@@ -2,26 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Timer
 {
     private bool isRun = false;
+    [SerializeField]
     private float timer = 0.0f;
-    private float duration = 0.0f;
 
     public void Initialize( float _duration )
     {
-        duration = _duration;
-        timer = 0.0f;
+        if ( timer <= _duration )
+        {
+            timer = _duration;
+        }
         isRun = true;
     }
 
     public bool Update()
     {
-        if ( timer >= duration )
+        Debug.Log( timer );
+        timer -= Time.deltaTime;
+        if ( timer <= 0.0f )
         {
             isRun = false;
         }
-        timer += Time.deltaTime;
 
         return isRun;
     }
