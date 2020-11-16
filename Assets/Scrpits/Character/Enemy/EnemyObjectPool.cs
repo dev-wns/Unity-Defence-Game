@@ -10,35 +10,35 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
     // 사용중인 오브젝트 리스트
     private Stack<Enemy> pool = new Stack<Enemy>();
 
-    private int allocateCount;
-    private int increaseCount;
+    private int allocate_count;
+    private int increase_count;
 
-    private GameObject usePool;
-    private GameObject waitPool;
+    private GameObject use_pool;
+    private GameObject wait_pool;
 
     private void Start()
     {
-        usePool = new GameObject( typeof( Enemy ).ToString() + "UsePool" );
-        usePool.transform.SetParent( this.transform );
-        waitPool = new GameObject( typeof( Enemy ).ToString() + "WaitPool" );
-        waitPool.transform.SetParent( this.transform );
+        use_pool = new GameObject( typeof( Enemy ).ToString() + "UsePool" );
+        use_pool.transform.SetParent( this.transform );
+        wait_pool = new GameObject( typeof( Enemy ).ToString() + "WaitPool" );
+        wait_pool.transform.SetParent( this.transform );
 
-        allocateCount = 10;
+        allocate_count = 10;
 }
 
     private void Allocate()
     {
-        for ( int count = 0; count < allocateCount; count++ )
+        for ( int count = 0; count < allocate_count; count++ )
         {
             Enemy enemy = Instantiate<Enemy>( prefab );
-            enemy.name = prefab.name + increaseCount++.ToString();
-            enemy.transform.SetParent( waitPool.transform );
+            enemy.name = prefab.name + increase_count++.ToString();
+            enemy.transform.SetParent( wait_pool.transform );
             enemy.gameObject.SetActive( false );
             pool.Push( enemy );
         }
     }
 
-    public Enemy Spawn( Vector2 _pos )
+    public Enemy Spawn()
     {
         if ( pool.Count <= 0 )
         {
@@ -46,9 +46,8 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         }
 
         Enemy enemy = pool.Pop();
-        enemy.Initialize( 100000.0f, Random.Range( 110.0f, 150.0f ) );
-        enemy.transform.position = _pos;
-        enemy.transform.SetParent( usePool.transform );
+        enemy.Initialize();
+        enemy.transform.SetParent( use_pool.transform );
         enemy.gameObject.SetActive( true );
         GameManager.Instance.GetEnemies().AddLast( enemy );
         return enemy;
@@ -56,8 +55,7 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
 
     public void Despawn( Enemy _enemy )
     {
-        _enemy.transform.position = new Vector2( 0.0f, 1000.0f );
-        _enemy.transform.SetParent( waitPool.transform );
+        _enemy.transform.SetParent( wait_pool.transform );
         _enemy.gameObject.SetActive( false );
         GameManager.Instance.GetEnemies().Remove( _enemy );
         pool.Push( _enemy );

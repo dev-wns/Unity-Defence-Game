@@ -13,25 +13,26 @@ public class Bullet : MonoBehaviour
     private Vector3 direction;
 
     private Timer timer = new Timer();
-    private float lifeTime;
+    private float life_time;
     [SerializeField]
     protected float range = 300.0f;
     [SerializeField]
     protected float duration;
+    // 충돌 범위 내 적 확인용
+    protected Collider2D[] colliders;
 
-
-    public void Initialize( Vector2 _position, Vector2 _direction )
+    public void Initialize( Vector2 spawn_pos, Vector2 _dir )
     {
-        this.direction = _direction;
-        this.transform.position = _position;
-        timer.Initialize( lifeTime );
+        direction = _dir;
+        transform.position = spawn_pos;
+        timer.Initialize( life_time );
     }
 
     private void Start()
     {
-        this.speed = 2000.0f;
-        this.lifeTime = 1.7f;
-        this.duration = 3.0f;
+        speed = 2000.0f;
+        life_time = 1.7f;
+        duration = 3.0f;
     }
 
     private void Update()

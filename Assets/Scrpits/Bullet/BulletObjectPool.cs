@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BulletObjectPool : Singleton<BulletObjectPool>
 {
-    //public Bullet prefab;
     // 캐릭터 마다 총알이 다르기 때문에
     // 총알 프리팹을 플레이어쪽에서 들고있음.
 
@@ -12,16 +11,16 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
     private Dictionary<string, Stack<Bullet>> pool = new Dictionary<string, Stack<Bullet>>();
 
     // 풀링 된 오브젝트를 자식오브젝트로 연결 시켜줄 부모 오브젝트
-    private Dictionary<string, GameObject> usePool = new Dictionary<string, GameObject>();
-    private Dictionary<string, GameObject> waitPool = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> use_pool = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> wait_pool = new Dictionary<string, GameObject>();
 
     // 생성할 개수
-    private int allocateCount;
-    private int increaseCount;
+    private int allocate_count;
+    private int increase_count;
 
     private void Start()
     {
-        allocateCount = 10;
+        allocate_count = 10;
     }
 
     private void Allocate( Bullet _prefab )
@@ -32,24 +31,24 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
         {
             pool.Add( name, new Stack<Bullet>() );
 
-            usePool.Add( name, new GameObject( name + "UsePool" ) );
-            usePool[name].transform.SetParent( this.transform );
+            use_pool.Add( name, new GameObject( name + "UsePool" ) );
+            use_pool[name].transform.SetParent( this.transform );
 
-            waitPool.Add( name, new GameObject( name + "WaitPool" ) );
-            waitPool[name].transform.SetParent( this.transform );
+            wait_pool.Add( name, new GameObject( name + "WaitPool" ) );
+            wait_pool[name].transform.SetParent( this.transform );
         }
 
-        for ( int count = 0; count < allocateCount; count++ )
+        for ( int count = 0; count < allocate_count; count++ )
         {
             Bullet bullet = Instantiate<Bullet>( _prefab );
-            bullet.transform.SetParent( waitPool[name].transform );
-            bullet.name = _prefab.name + increaseCount++.ToString();
+            bullet.transform.SetParent( wait_pool[name].transform );
+            bullet.name = _prefab.name + increase_count++.ToString();
             bullet.gameObject.SetActive( false );
             pool[name].Push( bullet );
         }
     }
 
-    public Bullet Spawn( Bullet _bullet, Vector2 _pos, Vector2 _dir )
+    public Bullet Spawn( Bullet _bullet )
     {
         string name = _bullet.GetType().Name;
         // 리스트에 총알이 없다면 새로 생성
@@ -59,8 +58,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
         }
 
         Bullet bullet = pool[name].Pop();
-        bullet.Initialize( _pos, _dir );
-        bullet.transform.SetParent( usePool[name].transform );
+        bullet.transform.SetParent( use_pool[name].transform );
         bullet.gameObject.SetActive( true );
 
         return bullet;
@@ -69,9 +67,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
     public void Despawn( Bullet _bullet )
     {
         string name = _bullet.GetType().Name;
-
-        _bullet.transform.position = new Vector2( 0.0f, -1000.0f );
-        _bullet.transform.SetParent( waitPool[name].transform );
+        _bullet.transform.SetParent( wait_pool[name].transform );
         _bullet.gameObject.SetActive( false );
         pool[name].Push( _bullet );
     }

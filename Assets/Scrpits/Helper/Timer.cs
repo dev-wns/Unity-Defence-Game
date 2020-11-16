@@ -5,13 +5,13 @@ using UnityEngine;
 [System.Serializable]
 public class Timer
 {
-    private bool isRun = false;
+    private bool is_run = false;
     [SerializeField]
     private float timer = 0.0f;
 
     public bool IsRun()
     {
-        return isRun;
+        return is_run;
     }
 
     public void Initialize( float _duration )
@@ -20,7 +20,7 @@ public class Timer
         {
             timer = _duration;
         }
-        isRun = true;
+        is_run = true;
     }
 
     public bool Update()
@@ -28,15 +28,15 @@ public class Timer
         timer -= Time.deltaTime;
         if ( timer <= 0.0f )
         {
-            isRun = false;
+            is_run = false;
         }
 
-        return isRun;
+        return is_run;
     }
 
     public void OnStop()
     {
-        isRun = false;
+        is_run = false;
         timer = 0.0f;
     }
 }

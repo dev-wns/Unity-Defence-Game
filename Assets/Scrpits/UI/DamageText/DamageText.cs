@@ -9,22 +9,18 @@ public class DamageText : MonoBehaviour
     private Color alpha;
     private Timer timer = new Timer();
 
-    private float moveSpeed;
-    private float alphaSpeed;
-    private float destroyDuration;
+    private float move_speed;
+    private float alpha_speed;
+    private float destroy_duration;
 
-    private float horizontalOffset;
-    private float verticalOffset;
-
-    private float screenWidth;
-    private float screenHeight;
+    private float horizontal_offset;
+    private float vertical_offset;
 
     public void Initialize( Vector2 _pos, int _damage )
     {
-        timer.Initialize( destroyDuration );
-        
-        transform.position = new Vector2( _pos.x + screenWidth - horizontalOffset,
-                                          _pos.y + screenHeight + verticalOffset );
+        timer.Initialize( destroy_duration );
+        transform.position = new Vector2( _pos.x + horizontal_offset,
+                                          _pos.y + vertical_offset );
 
         text.text = _damage.ToString();
         alpha.a = 1.0f;
@@ -32,20 +28,18 @@ public class DamageText : MonoBehaviour
 
     private void Awake()
     {
-        screenWidth = Screen.width * 0.5f;
-        screenHeight = Screen.height * 0.5f;
         text = GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
     {
-        horizontalOffset = Random.Range( -50.0f, 50.0f );
-        verticalOffset = 50.0f;
+        horizontal_offset = Random.Range( -50.0f, 50.0f );
+        vertical_offset = 50.0f;
 
         alpha = text.color;
-        moveSpeed = 150.0f;
-        alphaSpeed = 2.0f;
-        destroyDuration = 1.5f;
+        move_speed = 150.0f;
+        alpha_speed = 2.0f;
+        destroy_duration = 0.7f;
     }
 
     private void Update()
@@ -55,8 +49,8 @@ public class DamageText : MonoBehaviour
             DamageTextPool.Instance.Despawn( this );
         }
 
-        transform.Translate( this.transform.up * moveSpeed * Time.deltaTime );
-        alpha.a = Mathf.Lerp( alpha.a, 0.0f, alphaSpeed * Time.deltaTime );
+        transform.Translate( this.transform.up * move_speed * Time.deltaTime );
+        alpha.a = Mathf.Lerp( alpha.a, 0.0f, alpha_speed * Time.deltaTime );
         text.color = alpha;
     }
 }

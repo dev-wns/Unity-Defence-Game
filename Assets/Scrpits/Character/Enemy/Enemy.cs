@@ -5,14 +5,18 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]
-    private float originSpeed;
-    [SerializeField]
-    private float moveSpeed;
-    [SerializeField]
-    private float healthPoint;
-
     private List<Debuff> debuffs = new List<Debuff>();
+    private Vector2 spawn_position;
+    [SerializeField]
+    private float health;
+    [SerializeField]
+    private float armor;
+    [SerializeField]
+    private float damage;
+    [SerializeField]
+    private float origin_speed;
+    [SerializeField]
+    private float move_speed;
 
     public Debuff GetDebuff( DebuffType _type )
     {
@@ -26,25 +30,38 @@ public class Enemy : MonoBehaviour
         return null;
     }
 
-    public void Initialize( float _hp, float _speed )
+    public void Initialize()
     {
-        healthPoint = _hp;
-        originSpeed = moveSpeed = _speed;
+        short game_round = GameManager.Instance.GetRound();
+        transform.position = spawn_position;
+        health = ( 1.0f + ( game_round * 0.5f ) ) * 100.0f;
+        damage = ( 1.0f + ( game_round * 0.37f ) ) * 10.0f;
+        armor = ( 1.0f + ( game_round * 0.14f ) ) * 3.0f;
     }
 
     public void TakeDamage( float _damage )
     {
         if ( _damage >= 0.0f )
         {
-            healthPoint -= _damage;
-            DamageTextPool.Instance.Spawn( this.transform.position, _damage );
+            float final_damage = _damage;
+            if ( armor > 0 )
+            {
+                final_damage = _damage * ( 1.0f - ( armor / _damage * 0.01f ) );
+            }
+            health -= final_damage;
+            DamageText damage_ui = DamageTextPool.Instance.Spawn();
+            damage_ui.Initialize( transform.position, ( int )final_damage );
         }
+    }
+
+    private void Awake()
+    {
+        spawn_position = new Vector2( Random.Range( -500.0f, 500.0f ), 1060.0f );
     }
 
     private void Start()
     {
-        originSpeed = Random.Range( 110.0f, 200.0f );
-        moveSpeed = originSpeed;
+        origin_speed = move_speed = Random.Range( 50.0f, 200.0f );
 
         debuffs.Add( new Debuff( DebuffType.Slow ) );
         debuffs.Add( new Debuff( DebuffType.Stun ) );
@@ -71,25 +88,25 @@ public class Enemy : MonoBehaviour
             debuff.Update();
         }
 
-        if ( healthPoint <= 0.0f )
+        if ( health <= 0.0f )
         {
             OnDie();
         }
 
-        // Debuff Speed Decrease
+        // Speed reduction due to debuff
         float slowPercent = GetDebuff( DebuffType.Slow ).GetAmount();
-        moveSpeed = originSpeed * ( 1.0f - ( slowPercent * 0.01f ) );
+        move_speed = origin_speed * ( 1.0f - ( slowPercent * 0.01f ) );
 
         float stunAmount = GetDebuff( DebuffType.Stun ).GetAmount();
         if ( stunAmount > 0.0f )
         {
-            moveSpeed = 0.0f;
+            move_speed = 0.0f;
         }
 
-        this.transform.Translate( Vector2.down * moveSpeed * Time.deltaTime );
+        this.transform.Translate( Vector2.down * move_speed * Time.deltaTime );
     }
 
-    public void OnDie()
+    private void OnDie()
     {
         foreach( Debuff debuff in debuffs )
         {

@@ -7,18 +7,17 @@ public class Player : MonoBehaviour
     [SerializeReference]
     public Bullet prefab;
 
-    private float attackRange;
-    private float attackDelay;
-    private bool isAttack;
+    private float attack_range;
+    private float attack_delay;
+    private bool is_attack;
 
     private Enemy target;
-    private float timer;
 
     private void Start()
-    {
-        isAttack = true;
-        attackRange = 1500.0f;
-        attackDelay = 0.1f;// Random.Range( 0.1f, 1.0f );
+    { 
+        is_attack = true;
+        attack_range = 1500.0f;
+        attack_delay = 0.25f;// Random.Range( 0.1f, 1.0f );
 
         StartCoroutine( Attack() );
     }
@@ -27,11 +26,11 @@ public class Player : MonoBehaviour
     {
         while ( true )
         {
-            if ( isAttack == true )
+            if ( is_attack == true )
             {
                 foreach ( Enemy enemy in GameManager.Instance.GetEnemies() )
                 {
-                    if ( Vector3.Distance( this.transform.position, enemy.transform.position ) <= attackRange )
+                    if ( Vector3.Distance( this.transform.position, enemy.transform.position ) <= attack_range )
                     {
                         target = enemy;
                         break;
@@ -40,7 +39,7 @@ public class Player : MonoBehaviour
 
                 AttackToEnemy();
             }
-            yield return new WaitForSeconds( attackDelay );
+            yield return new WaitForSeconds( attack_delay );
         }
     }
 
@@ -48,10 +47,10 @@ public class Player : MonoBehaviour
     {
         if ( Input.GetMouseButtonDown( 1 ) == true )
         {
-            isAttack = !isAttack;
+            is_attack = !is_attack;
         }
 
-        if ( isAttack == false )
+        if ( is_attack == false )
         {
             return;
         }
@@ -64,10 +63,10 @@ public class Player : MonoBehaviour
             return;
         }
 
-        Vector2 trans = this.transform.position;
-        Vector2 direction = ( target.transform.position - this.transform.position ).normalized;
-        BulletObjectPool.Instance.Spawn( prefab, trans, direction );
-        
+        Bullet bullet = BulletObjectPool.Instance.Spawn( prefab );
+        // argument : player_position, direction
+        bullet.Initialize( transform.position, ( target.transform.position - transform.position ).normalized );
+
         target = null;
     }
 }
