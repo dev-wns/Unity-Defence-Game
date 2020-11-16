@@ -16,11 +16,11 @@ public class Singleton<Type> : MonoBehaviour where Type : MonoBehaviour
 
                 if ( instance == null )
                 {
-                    var singletonObject = new GameObject();
-                    instance = singletonObject.AddComponent<Type>();
-                    singletonObject.name = typeof( Type ).ToString() + " (Singleton)";
+                    var singleton_object = new GameObject();
+                    instance = singleton_object.AddComponent<Type>();
+                    singleton_object.name = typeof( Type ).ToString() + " (Singleton)";
 
-                    DontDestroyOnLoad( singletonObject );
+                    DontDestroyOnLoad( singleton_object );
                 }
             }
             return instance;

@@ -1,27 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
-public enum DebuffType : int { Slow, Stun, }
+public enum DebuffType : int { Slow, Stun, Curse, }
 public class Debuff
 {
-    private Timer timer = new Timer();
+    private bool is_apply;
     private float amount;
     private float duration;
-    private DebuffType type;
-
-    public Debuff( DebuffType _type )
+    private Stopwatch timer = new Stopwatch();
+    
+    public bool isApply()
     {
-        type = _type;
+        return is_apply;
     }
 
-    public DebuffType GetDebuffType()
+    public void Restart()
     {
-        return type;
+        if ( isApply() == true )
+        {
+            timer.Restart();
+            is_apply = true;
+        }
     }
 
-    public float GetAmount()
+    public float GetAmountAndUpdate()
     {
+        if ( timer.ElapsedMilliseconds >= duration * 1000.0f )
+        {
+            is_apply = false;
+            amount = 0.0f;
+            timer.Stop();
+        }
+
         return amount;
     }
 
@@ -31,23 +44,15 @@ public class Debuff
         {
             this.amount = _amount;
         }
-
         duration = _duration;
-        timer.Initialize( duration );
-    }
-
-    public void Update()
-    {
-        if ( timer.Update() == false )
-        {
-            amount = 0.0f;
-        }
+        is_apply = true;
+        timer.Restart();
     }
 
     public void OnStop()
     {
         amount = 0.0f;
         duration = 0.0f;
-        timer.OnStop();
+        timer.Stop();
     }
 }

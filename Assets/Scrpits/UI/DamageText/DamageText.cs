@@ -2,28 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
 public class DamageText : MonoBehaviour
 {
     private TextMeshProUGUI text;
     private Color alpha;
-    private Timer timer = new Timer();
+    private Stopwatch timer = new Stopwatch();
 
     private float move_speed;
-    private float alpha_speed;
-    private float destroy_duration;
+    private float alpha_fade_speed;
+    private float life_time;
 
     private float horizontal_offset;
     private float vertical_offset;
 
     public void Initialize( Vector2 _pos, int _damage )
     {
-        timer.Initialize( destroy_duration );
         transform.position = new Vector2( _pos.x + horizontal_offset,
                                           _pos.y + vertical_offset );
 
         text.text = _damage.ToString();
         alpha.a = 1.0f;
+        timer.Restart();
     }
 
     private void Awake()
@@ -38,19 +40,19 @@ public class DamageText : MonoBehaviour
 
         alpha = text.color;
         move_speed = 150.0f;
-        alpha_speed = 2.0f;
-        destroy_duration = 0.7f;
+        life_time = 0.5f;
+        alpha_fade_speed = 5.0f;
     }
 
     private void Update()
     {
-        if ( timer.Update() == false )
+        if ( timer.ElapsedMilliseconds >= life_time * 1000.0f )
         {
-            GameManager.Instance.damage_text_pool.Despawn( this );
+            DamageTextPool.Instance.Despawn( this );
         }
 
-        transform.Translate( this.transform.up * move_speed * Time.deltaTime );
-        alpha.a = Mathf.Lerp( alpha.a, 0.0f, alpha_speed * Time.deltaTime );
+        transform.Translate( transform.up * move_speed * Time.deltaTime );
+        alpha.a = Mathf.Lerp( alpha.a, 0.0f, alpha_fade_speed * Time.deltaTime );
         text.color = alpha;
     }
 }

@@ -1,23 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Diagnostics;
+using Debug = UnityEngine.Debug;
 
-public enum BulletType { Default, Bubble, Dark, Explosion, Flame, Lightning }
 public class Bullet : MonoBehaviour
 {
-    private bool isCrash;
-
     [SerializeField]
     private float speed;
     [SerializeField]
     private Vector3 direction;
-
-    private Timer timer = new Timer();
+    private Stopwatch destroy_timer = new Stopwatch();
     private float life_time;
-    [SerializeField]
-    protected float range = 300.0f;
-    [SerializeField]
-    protected float duration;
+
     // 충돌 범위 내 적 확인용
     protected Collider2D[] colliders;
 
@@ -25,35 +20,31 @@ public class Bullet : MonoBehaviour
     {
         direction = _dir;
         transform.position = spawn_pos;
-        timer.Initialize( life_time );
+        destroy_timer.Restart();
     }
 
     private void Start()
     {
-        speed = 2000.0f;
+        speed = 3000.0f;
         life_time = 1.7f;
-        duration = 3.0f;
     }
 
     private void Update()
     {
-        if ( timer.Update() == false )
+        if ( destroy_timer.ElapsedMilliseconds >= life_time * 1000.0f )
         {
-            isCrash = false;
-            GameManager.Instance.bullet_object_pool.Despawn( this );
+            BulletObjectPool.Instance.Despawn( this );
         }
 
-        if ( isCrash == false )
-        {
-            this.transform.Translate( direction * speed * Time.deltaTime );
-        }
+        this.transform.Translate( direction * speed * Time.deltaTime );
     }
 
     private void OnTriggerEnter2D( Collider2D _other )
     {
         if ( _other.transform.CompareTag( "Enemy" ) == true )
         {
-            isCrash = true;
+            BulletObjectPool.Instance.Despawn( this );
+            destroy_timer.Stop();
         }
     }
 

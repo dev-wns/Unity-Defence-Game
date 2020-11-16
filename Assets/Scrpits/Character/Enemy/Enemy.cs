@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    private List<Debuff> debuffs = new List<Debuff>();
+    private Dictionary<DebuffType, Debuff> debuffs = new Dictionary<DebuffType, Debuff>();
     private Vector2 spawn_position;
     [SerializeField]
     private float health;
+    [SerializeField]
+    private float origin_armor;
     [SerializeField]
     private float armor;
     [SerializeField]
@@ -18,16 +20,16 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float move_speed;
 
-    public Debuff GetDebuff( DebuffType _type )
+    public void SetDebuff( DebuffType _type, float _amount, float _duration )
     {
-        foreach( Debuff debuff in debuffs )
+        if ( debuffs[_type]?.isApply() == false )
         {
-            if ( debuff.GetDebuffType() == _type )
-            {
-                return debuff;
-            }
+            debuffs[_type].Initialize( _amount, _duration );
         }
-        return null;
+        else
+        {
+            debuffs[_type].Restart();
+        }
     }
 
     public void Initialize()
@@ -36,7 +38,7 @@ public class Enemy : MonoBehaviour
         transform.position = spawn_position;
         health = ( 1.0f + ( game_round * 0.5f ) ) * 100.0f;
         damage = ( 1.0f + ( game_round * 0.37f ) ) * 10.0f;
-        armor = ( 1.0f + ( game_round * 0.14f ) ) * 3.0f;
+        origin_armor = armor = 80.0f; // ( 1.0f + ( game_round * 0.14f ) ) * 3.0f;
     }
 
     public void TakeDamage( float _damage )
@@ -46,25 +48,27 @@ public class Enemy : MonoBehaviour
             float final_damage = _damage;
             if ( armor > 0 )
             {
-                final_damage = _damage * ( 1.0f - ( armor / _damage * 0.01f ) );
+                final_damage = _damage / armor;
             }
             health -= final_damage;
-            DamageText damage_ui = GameManager.Instance.damage_text_pool.Spawn();
+            DamageText damage_ui = DamageTextPool.Instance.Spawn();
             damage_ui.Initialize( transform.position, ( int )final_damage );
         }
     }
 
     private void Awake()
     {
-        spawn_position = new Vector2( Random.Range( -500.0f, 500.0f ), 1060.0f );
+        float spawn_width_range = ( Screen.width * 0.5f ) - ( transform.localScale.x * 0.5f );
+        spawn_position = new Vector2( Random.Range( -spawn_width_range, spawn_width_range ), ( ( Screen.height * 0.5f ) + ( transform.localScale.y * 0.5f ) ) );
     }
 
     private void Start()
     {
         origin_speed = move_speed = Random.Range( 50.0f, 200.0f );
 
-        debuffs.Add( new Debuff( DebuffType.Slow ) );
-        debuffs.Add( new Debuff( DebuffType.Stun ) );
+        debuffs.Add( DebuffType.Slow, new Debuff() );
+        debuffs.Add( DebuffType.Stun, new Debuff() );
+        debuffs.Add( DebuffType.Curse, new Debuff() );
     }
 
     private void OnTriggerEnter2D( Collider2D _col )
@@ -83,22 +87,22 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        foreach ( Debuff debuff in debuffs )
-        {
-            debuff.Update();
-        }
-
         if ( health <= 0.0f )
         {
             OnDie();
         }
 
-        // Speed reduction due to debuff
-        float slowPercent = GetDebuff( DebuffType.Slow ).GetAmount();
-        move_speed = origin_speed * ( 1.0f - ( slowPercent * 0.01f ) );
+        // Decreased defense by curse
+        float curse_amount = debuffs[DebuffType.Curse].GetAmountAndUpdate();
+        armor = origin_armor - curse_amount;
 
-        float stunAmount = GetDebuff( DebuffType.Stun ).GetAmount();
-        if ( stunAmount > 0.0f )
+        // Speed reduction due to debuff
+        float slow_percent = debuffs[DebuffType.Slow].GetAmountAndUpdate();
+        move_speed = origin_speed * ( 1.0f - ( slow_percent * 0.01f ) );
+
+        // Limitation of movement speed by stun
+        float stun_amount = debuffs[DebuffType.Stun].GetAmountAndUpdate();
+        if ( stun_amount > 0.0f )
         {
             move_speed = 0.0f;
         }
@@ -108,10 +112,9 @@ public class Enemy : MonoBehaviour
 
     private void OnDie()
     {
-        foreach( Debuff debuff in debuffs )
-        {
-            debuff.OnStop();
-        }
-        GameManager.Instance.enemy_object_pool.Despawn( this );
+        debuffs[DebuffType.Slow].OnStop();
+        debuffs[DebuffType.Stun].OnStop();
+        debuffs[DebuffType.Curse].OnStop();
+        EnemyObjectPool.Instance.Despawn( this );
     }
 }

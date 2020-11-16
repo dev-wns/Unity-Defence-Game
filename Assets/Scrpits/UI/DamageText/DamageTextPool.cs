@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class DamageTextPool : MonoBehaviour
+public class DamageTextPool : Singleton<DamageTextPool>
 { 
     // 복사될 프리팹
     public DamageText prefab;
@@ -27,6 +27,7 @@ public class DamageTextPool : MonoBehaviour
         wait_pool.transform.SetParent( this.transform );
 
         allocate_count = 100;
+        Allocate();
     }
 
     public void Allocate()

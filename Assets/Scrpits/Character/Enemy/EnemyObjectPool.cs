@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyObjectPool : MonoBehaviour
+public class EnemyObjectPool : Singleton<EnemyObjectPool>
 {
     // 복사될 프리팹
     public Enemy prefab;

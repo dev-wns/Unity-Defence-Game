@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 344322319}
   - component: {fileID: 344322322}
   - component: {fileID: 344322321}
-  - component: {fileID: 344322323}
+  - component: {fileID: 344322320}
   m_Layer: 0
   m_Name: Character Slot 2
   m_TagString: Untagged
@@ -306,6 +306,20 @@ Transform:
   m_Father: {fileID: 171458573}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &344322320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344322318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b353edc343da6a40a8c5a9f2cb37425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5449576198880692942, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
+  ability_range: 300
 --- !u!23 &344322321
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -355,19 +369,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344322318}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &344322323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344322318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8a1c2263fa6004390197b36865ff95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 8298886324792120186, guid: 784b2d6006bc4e641a2e9ce7e914d744, type: 3}
 --- !u!1 &526590403
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,14 +380,13 @@ GameObject:
   - component: {fileID: 526590404}
   - component: {fileID: 526590407}
   - component: {fileID: 526590406}
-  - component: {fileID: 526590408}
   m_Layer: 0
   m_Name: Character Slot 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &526590404
 Transform:
   m_ObjectHideFlags: 0
@@ -450,19 +450,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526590403}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &526590408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526590403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8a1c2263fa6004390197b36865ff95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 220364437594885979, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
 --- !u!1 &605673995
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +748,7 @@ GameObject:
   - component: {fileID: 732608051}
   - component: {fileID: 732608054}
   - component: {fileID: 732608053}
-  - component: {fileID: 732608055}
+  - component: {fileID: 732608052}
   m_Layer: 0
   m_Name: Character Slot 1
   m_TagString: Untagged
@@ -783,6 +770,22 @@ Transform:
   m_Father: {fileID: 171458573}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &732608052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732608050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b635172915398b498f5c6f2edb7cdad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5449576198880692942, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
+  slow_percent: 75
+  ability_range: 300
+  ability_duration: 3
 --- !u!23 &732608053
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -832,19 +835,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 732608050}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &732608055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732608050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8a1c2263fa6004390197b36865ff95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1660520296979825579, guid: 75d1bdc44a6d78948a3f1af7a80f9c0e, type: 3}
 --- !u!1 &914263715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,14 +1217,14 @@ GameObject:
   - component: {fileID: 1546382459}
   - component: {fileID: 1546382462}
   - component: {fileID: 1546382461}
-  - component: {fileID: 1546382463}
+  - component: {fileID: 1546382460}
   m_Layer: 0
   m_Name: Character Slot 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1546382459
 Transform:
   m_ObjectHideFlags: 0
@@ -1249,6 +1239,21 @@ Transform:
   m_Father: {fileID: 171458573}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1546382460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1546382458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbeaa615df7c71941b61ea7c1dcd1f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5449576198880692942, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
+  ability_range: 300
+  ability_duration: 0
 --- !u!23 &1546382461
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1298,19 +1303,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1546382458}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1546382463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546382458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8a1c2263fa6004390197b36865ff95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: -6259246052260382667, guid: d2ca67cac709dff4b9aef64504f47b6e, type: 3}
 --- !u!1 &1789333685
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,9 +1346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2126e3898b4e1408c4835a1de4ee5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy_object_pool: {fileID: 643342011}
-  bullet_object_pool: {fileID: 1191947160}
-  damage_text_pool: {fileID: 605674000}
 --- !u!1 &1952328078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,7 +1357,6 @@ GameObject:
   - component: {fileID: 1952328079}
   - component: {fileID: 1952328082}
   - component: {fileID: 1952328081}
-  - component: {fileID: 1952328083}
   m_Layer: 0
   m_Name: Character Slot 5
   m_TagString: Untagged
@@ -1439,16 +1427,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952328078}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1952328083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1952328078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8a1c2263fa6004390197b36865ff95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: -7407935984590434150, guid: 3209575261ceff24baa83ef6969b6afc, type: 3}
