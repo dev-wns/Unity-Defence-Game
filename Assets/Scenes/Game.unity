@@ -1354,6 +1354,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af2126e3898b4e1408c4835a1de4ee5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy_object_pool: {fileID: 643342011}
+  bullet_object_pool: {fileID: 1191947160}
+  damage_text_pool: {fileID: 605674000}
 --- !u!1 &1952328078
 GameObject:
   m_ObjectHideFlags: 0

@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        Bullet bullet = BulletObjectPool.Instance.Spawn( prefab );
+        Bullet bullet = GameManager.Instance.bullet_object_pool.Spawn( prefab );
         // argument : player_position, direction
         bullet.Initialize( transform.position, ( target.transform.position - transform.position ).normalized );
 

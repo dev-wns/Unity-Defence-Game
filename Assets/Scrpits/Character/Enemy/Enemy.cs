@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
                 final_damage = _damage * ( 1.0f - ( armor / _damage * 0.01f ) );
             }
             health -= final_damage;
-            DamageText damage_ui = DamageTextPool.Instance.Spawn();
+            DamageText damage_ui = GameManager.Instance.damage_text_pool.Spawn();
             damage_ui.Initialize( transform.position, ( int )final_damage );
         }
     }
@@ -112,6 +112,6 @@ public class Enemy : MonoBehaviour
         {
             debuff.OnStop();
         }
-        EnemyObjectPool.Instance.Despawn( this );
+        GameManager.Instance.enemy_object_pool.Despawn( this );
     }
 }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class DamageTextPool : Singleton<DamageTextPool>
-{
+public class DamageTextPool : MonoBehaviour
+{ 
     // 복사될 프리팹
     public DamageText prefab;
 
@@ -29,7 +29,7 @@ public class DamageTextPool : Singleton<DamageTextPool>
         allocate_count = 100;
     }
 
-    private void Allocate()
+    public void Allocate()
     {
         for ( int count = 0; count < allocate_count; count++ )
         {

@@ -46,7 +46,7 @@ public class DamageText : MonoBehaviour
     {
         if ( timer.Update() == false )
         {
-            DamageTextPool.Instance.Despawn( this );
+            GameManager.Instance.damage_text_pool.Despawn( this );
         }
 
         transform.Translate( this.transform.up * move_speed * Time.deltaTime );

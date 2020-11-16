@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyObjectPool : Singleton<EnemyObjectPool>
+public class EnemyObjectPool : MonoBehaviour
 {
     // 복사될 프리팹
     public Enemy prefab;
@@ -10,11 +10,11 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
     // 사용중인 오브젝트 리스트
     private Stack<Enemy> pool = new Stack<Enemy>();
 
-    private int allocate_count;
-    private int increase_count;
-
     private GameObject use_pool;
     private GameObject wait_pool;
+
+    private int allocate_count;
+    private int increase_count;
 
     private void Start()
     {

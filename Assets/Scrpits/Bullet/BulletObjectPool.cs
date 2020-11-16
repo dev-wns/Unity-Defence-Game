@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletObjectPool : Singleton<BulletObjectPool>
+public class BulletObjectPool : MonoBehaviour
 {
     // 캐릭터 마다 총알이 다르기 때문에
     // 총알 프리팹을 플레이어쪽에서 들고있음.

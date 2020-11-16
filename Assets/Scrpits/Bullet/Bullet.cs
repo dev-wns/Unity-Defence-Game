@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
         if ( timer.Update() == false )
         {
             isCrash = false;
-            BulletObjectPool.Instance.Despawn( this );
+            GameManager.Instance.bullet_object_pool.Despawn( this );
         }
 
         if ( isCrash == false )

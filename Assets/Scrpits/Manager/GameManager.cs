@@ -8,6 +8,11 @@ public class GameManager : Singleton<GameManager>
 {
     private short game_round = 1;
 
+    // 오브젝트 풀
+    public EnemyObjectPool enemy_object_pool;
+    public BulletObjectPool bullet_object_pool;
+    public DamageTextPool damage_text_pool;
+
     // 활성화 되어있는 적 객체
     private LinkedList<Enemy> enemies = new LinkedList<Enemy>();
 
@@ -18,6 +23,11 @@ public class GameManager : Singleton<GameManager>
     {
         spawn_timer.Start();
         round_timer.Start();
+    }
+
+    private void Start()
+    {
+        damage_text_pool.Allocate();
     }
 
     public short GetRound()
@@ -40,7 +50,7 @@ public class GameManager : Singleton<GameManager>
         // 초당 적 하나 생성
         if ( spawn_timer.ElapsedMilliseconds >= 1000 )
         {
-            EnemyObjectPool.Instance.Spawn();
+            enemy_object_pool.Spawn();
             spawn_timer.Restart();
         }
     }
