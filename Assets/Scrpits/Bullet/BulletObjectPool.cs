@@ -12,7 +12,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
     private Dictionary<string, PoolData> wait_pool = new Dictionary<string, PoolData>();
 
     // 생성할 개수
-    private int allocate_count;
+    private readonly byte allocate_count = 10;
 
     private Transform origin_transform;
     public Transform current_transform
@@ -33,11 +33,6 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
     private void Awake()
     {
         current_transform = transform;
-    }
-
-    private void Start()
-    {
-        allocate_count = 10;
     }
 
     private void Allocate( Bullet _prefab )

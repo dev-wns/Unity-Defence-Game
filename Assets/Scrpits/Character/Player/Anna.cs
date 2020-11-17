@@ -7,7 +7,7 @@ public class Anna : Player
     [SerializeField]
     private float ability_range = 100.0f;
     private Collider2D[] colliders_in_attack_range;
-    private int layer_mask = 1 << 8;
+    private readonly short layer_mask = 1 << 8;
 
     public override void Ability( Vector2 _pos )
     {

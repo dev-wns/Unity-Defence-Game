@@ -13,10 +13,10 @@ public class DamageText : MonoBehaviour
 
     private float move_speed;
     private float alpha_fade_speed;
-    private float life_time;
 
+    private readonly short life_time = 500; // 0.5
+    private readonly float vertical_offset = 50.0f;
     private float horizontal_offset;
-    private float vertical_offset;
 
     private Transform origin_transform;
     public Transform current_transform
@@ -46,24 +46,21 @@ public class DamageText : MonoBehaviour
 
     private void Awake()
     {
+        horizontal_offset = Random.Range( -50.0f, 50.0f );
         current_transform = transform;
         text = GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
     {
-        horizontal_offset = Random.Range( -50.0f, 50.0f );
-        vertical_offset = 50.0f;
-
         alpha = text.color;
         move_speed = 150.0f;
-        life_time = 0.5f;
         alpha_fade_speed = 5.0f;
     }
 
     private void Update()
     {
-        if ( timer.ElapsedMilliseconds >= life_time * 1000.0f )
+        if ( timer.ElapsedMilliseconds >= life_time )
         {
             DamageTextPool.Instance.Despawn( this );
         }

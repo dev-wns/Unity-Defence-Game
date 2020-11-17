@@ -6,11 +6,12 @@ using Debug = UnityEngine.Debug;
 
 public class Player : MonoBehaviour
 {
+    private readonly float delay_time_to_find_enemies = 0.1f;
 
     public Bullet prefab;
+    public float damage { get; private set; }
+
     protected Enemy target { get; private set; }
-    private WaitForSeconds attack_delay_seconds;
-    private WaitForSeconds delay_time_to_find_enemies;
 
     private float attack_range;
     private float attack_delay;
@@ -20,7 +21,7 @@ public class Player : MonoBehaviour
 
     private float min_damage;
     private float max_damage;
-    public float damage { get; private set; }
+
     private Transform origin_transform;
     public Transform current_transform
     {
@@ -51,8 +52,6 @@ public class Player : MonoBehaviour
         critical_damage_increase = 100.0f;
 
         attack_delay = 0.1f;// Random.Range( 0.1f, 1.0f );
-        attack_delay_seconds = new WaitForSeconds( attack_delay );
-        delay_time_to_find_enemies = new WaitForSeconds( 0.1f );
 
         attack_range = 1500.0f;
 
@@ -83,7 +82,7 @@ public class Player : MonoBehaviour
                     target = null;
                 }
             }
-            yield return delay_time_to_find_enemies;
+            yield return YieldCache.WaitForSeconds( delay_time_to_find_enemies );
         }
     }
 
@@ -100,25 +99,13 @@ public class Player : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        //float min_distance = attack_range;
-        //foreach ( Enemy enemy in GameManager.Instance.enemy_enable_list )
-        //{
-        //    float distance = Vector2.Distance( transform.position, enemy.transform.position );
-        //    if ( Vector2.Distance( transform.position, enemy.transform.position ) <= min_distance )
-        //    {
-        //        min_distance = distance;
-        //        target = enemy;
-        //    }
-        //}
-
         if ( target != null )
         {
             Bullet bullet = BulletObjectPool.Instance.Spawn( prefab );
             bullet.Initialize( this, current_transform.position, ( target.current_transform.position - current_transform.position ).normalized );
-            //target = null;
         }
 
-        yield return attack_delay_seconds;
+        yield return YieldCache.WaitForSeconds( attack_delay );
         StartCoroutine( Idle() );
     }
 

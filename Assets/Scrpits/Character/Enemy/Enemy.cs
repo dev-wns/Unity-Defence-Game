@@ -10,11 +10,11 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float health;
     [SerializeField]
+    private float damage;
+    [SerializeField]
     private float origin_armor;
     [SerializeField]
     private float armor;
-    [SerializeField]
-    private float damage;
     [SerializeField]
     private float origin_speed;
     [SerializeField]
@@ -67,8 +67,7 @@ public class Enemy : MonoBehaviour
                 final_damage = _damage / armor;
             }
             health -= final_damage;
-            DamageText damage_ui = DamageTextPool.Instance.Spawn();
-            damage_ui.Initialize( current_transform.position, ( int )final_damage );
+            DamageTextPool.Instance.Spawn().Initialize( current_transform.position, ( int )final_damage );
         }
     }
 

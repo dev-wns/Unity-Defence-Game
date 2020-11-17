@@ -15,7 +15,7 @@ public class DamageTextPool : Singleton<DamageTextPool>
     private PoolData use_pool;
     private PoolData wait_pool;
     // 생성할 개수
-    private int allocate_count;
+    private readonly byte allocate_count = 100;
 
     private void Start()
     {
@@ -34,7 +34,6 @@ public class DamageTextPool : Singleton<DamageTextPool>
         wait_pool.obj_transform.SetParent( current_transform );
         wait_pool.obj_parent.isStatic = true;
 
-        allocate_count = 100;
         Allocate();
     }
 

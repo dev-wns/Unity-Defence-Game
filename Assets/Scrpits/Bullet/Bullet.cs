@@ -6,12 +6,10 @@ using Debug = UnityEngine.Debug;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private Vector3 direction;
+    private readonly float life_time = 1.7f;
+    private readonly float speed = 3500.0f;
     private Stopwatch destroy_timer = new Stopwatch();
-    private float life_time;
+    private Vector3 direction;
     public Player owner { get; private set; }
 
     // 충돌 범위 내 적 확인용
@@ -43,12 +41,6 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         current_transform = transform;
-    }
-
-    private void Start()
-    {
-        speed = 3500.0f;
-        life_time = 1.7f;
     }
 
     private void Update()

@@ -14,7 +14,7 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
     private PoolData use_pool;
     private PoolData wait_pool;
 
-    private int allocate_count;
+    private readonly byte allocate_count = 50;
 
     private void Start()
     {
@@ -32,7 +32,6 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         wait_pool.obj_transform.SetParent( transform );
         wait_pool.obj_parent.isStatic = true;
 
-        allocate_count = 50;
         Allocate();
     }
 
