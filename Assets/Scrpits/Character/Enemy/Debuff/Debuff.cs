@@ -24,7 +24,7 @@ public class Debuff
             timer.Restart();
             is_apply = true;
         }
-    }
+    }   
 
     public float GetAmountAndUpdate()
     {
@@ -40,9 +40,9 @@ public class Debuff
 
     public void Initialize( float _amount, float _duration )
     {
-        if ( this.amount < _amount )
+        if ( amount < _amount )
         {
-            this.amount = _amount;
+            amount = _amount;
         }
         duration = _duration;
         is_apply = true;

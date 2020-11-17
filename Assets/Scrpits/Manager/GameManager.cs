@@ -4,20 +4,36 @@ using UnityEngine;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 
+
 public class GameManager : Singleton<GameManager>
 {
     private short game_round = 1;
-
-    // 활성화 되어있는 적 객체
-    private LinkedList<Enemy> enemies = new LinkedList<Enemy>();
-
     private Stopwatch spawn_timer = new Stopwatch();
-    private Stopwatch round_timer = new Stopwatch();
+    public LinkedList<Enemy> enemy_enable_list = new LinkedList<Enemy>();
+
+    public void PushEnemy( Enemy _enemy )
+    {
+        if ( _enemy == null && enemy_enable_list.Find( _enemy ) != null )
+        {
+            return;
+        }
+
+        enemy_enable_list.AddLast( _enemy );
+    }
+
+    public void PopEnemy( Enemy _enemy )
+    {
+        if ( _enemy == null )
+        {
+            return;
+        }
+
+        enemy_enable_list.Remove( _enemy );
+    }
 
     private void Awake()
     {
         spawn_timer.Start();
-        round_timer.Start();
     }
 
     public short GetRound()
@@ -25,19 +41,8 @@ public class GameManager : Singleton<GameManager>
         return game_round;
     }
 
-    public LinkedList<Enemy> GetEnemies()
-    {
-        return enemies;
-    }
-
-    public float GetDamage()
-    {
-        return 10.0f; // Random.Range( 1.0f, 1000.0f );
-    }
-
     void Update()
     {
-        // 초당 적 하나 생성
         if ( spawn_timer.ElapsedMilliseconds >= 1000 )
         {
             EnemyObjectPool.Instance.Spawn();

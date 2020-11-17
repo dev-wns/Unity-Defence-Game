@@ -11,12 +11,19 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
     private Dictionary<string, Stack<Bullet>> pool = new Dictionary<string, Stack<Bullet>>();
 
     // 풀링 된 오브젝트를 자식오브젝트로 연결 시켜줄 부모 오브젝트
-    private Dictionary<string, GameObject> use_pool = new Dictionary<string, GameObject>();
-    private Dictionary<string, GameObject> wait_pool = new Dictionary<string, GameObject>();
+    private Dictionary<string, PoolData> use_pool = new Dictionary<string, PoolData>();
+    private Dictionary<string, PoolData> wait_pool = new Dictionary<string, PoolData>();
 
     // 생성할 개수
     private int allocate_count;
     private int increase_count;
+
+    private Transform current_transform;
+
+    private void Awake()
+    {
+        current_transform = transform;
+    }
 
     private void Start()
     {
@@ -31,18 +38,21 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
         {
             pool.Add( name, new Stack<Bullet>() );
 
-            use_pool.Add( name, new GameObject( name + "UsePool" ) );
-            use_pool[name].transform.SetParent( this.transform );
+            GameObject usepool_parent = new GameObject( name + "UsePool" );
+            Transform usepool_transform = usepool_parent.transform;
+            use_pool.Add( name, new PoolData( usepool_parent, usepool_transform  ) );
+            use_pool[name].obj_transform.SetParent( current_transform );
 
-            wait_pool.Add( name, new GameObject( name + "WaitPool" ) );
-            wait_pool[name].transform.SetParent( this.transform );
+            GameObject waitpool_parent = new GameObject( name + "WaitPool" );
+            Transform waitpool_transform = usepool_parent.transform;
+            wait_pool.Add( name, new PoolData( waitpool_parent, waitpool_transform ) );
+            wait_pool[name].obj_transform.SetParent( current_transform );
         }
 
         for ( int count = 0; count < allocate_count; count++ )
         {
             Bullet bullet = Instantiate<Bullet>( _prefab );
-            bullet.transform.SetParent( wait_pool[name].transform );
-            bullet.name = _prefab.name + increase_count++.ToString();
+            bullet.current_transform.SetParent( wait_pool[name].obj_transform );
             bullet.gameObject.SetActive( false );
             pool[name].Push( bullet );
         }
@@ -58,7 +68,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
         }
 
         Bullet bullet = pool[name].Pop();
-        bullet.transform.SetParent( use_pool[name].transform );
+        bullet.current_transform.SetParent( use_pool[name].obj_transform );
         bullet.gameObject.SetActive( true );
 
         return bullet;
@@ -67,7 +77,8 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
     public void Despawn( Bullet _bullet )
     {
         string name = _bullet.GetType().Name;
-        _bullet.transform.SetParent( wait_pool[name].transform );
+        _bullet.current_transform.position = new Vector3( 0.0f, 10000.0f, -1.0f );
+        _bullet.current_transform.SetParent( wait_pool[name].obj_transform );
         _bullet.gameObject.SetActive( false );
         pool[name].Push( _bullet );
     }

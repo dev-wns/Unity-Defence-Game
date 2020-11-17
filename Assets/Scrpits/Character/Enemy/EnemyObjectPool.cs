@@ -10,29 +10,37 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
     // 사용중인 오브젝트 리스트
     private Stack<Enemy> pool = new Stack<Enemy>();
 
-    private GameObject use_pool;
-    private GameObject wait_pool;
+    // 풀링 된 오브젝트를 자식오브젝트로 연결 시켜줄 부모 오브젝트
+    private PoolData use_pool;
+    private PoolData wait_pool;
 
     private int allocate_count;
     private int increase_count;
 
     private void Start()
     {
-        use_pool = new GameObject( typeof( Enemy ).ToString() + "UsePool" );
-        use_pool.transform.SetParent( this.transform );
-        wait_pool = new GameObject( typeof( Enemy ).ToString() + "WaitPool" );
-        wait_pool.transform.SetParent( this.transform );
+        string name = typeof( Enemy ).ToString();
 
-        allocate_count = 10;
-}
+        GameObject usepool_parent = new GameObject( name + "UsePool" );
+        Transform usepool_transform = usepool_parent.transform;
+        use_pool = new PoolData( usepool_parent, usepool_transform );
+        use_pool.obj_transform.SetParent( transform );
+
+        GameObject waitpool_parent = new GameObject( name + "WaitPool" );
+        Transform waitpool_transform = usepool_parent.transform;
+        wait_pool = new PoolData( waitpool_parent, waitpool_transform );
+        wait_pool.obj_transform.SetParent( transform );
+
+        allocate_count = 50;
+        Allocate();
+    }
 
     private void Allocate()
     {
         for ( int count = 0; count < allocate_count; count++ )
         {
             Enemy enemy = Instantiate<Enemy>( prefab );
-            enemy.name = prefab.name + increase_count++.ToString();
-            enemy.transform.SetParent( wait_pool.transform );
+            enemy.current_transform.SetParent( wait_pool.obj_transform );
             enemy.gameObject.SetActive( false );
             pool.Push( enemy );
         }
@@ -44,20 +52,20 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         {
             Allocate();
         }
-
         Enemy enemy = pool.Pop();
         enemy.Initialize();
-        enemy.transform.SetParent( use_pool.transform );
+        enemy.current_transform.SetParent( use_pool.obj_transform );
         enemy.gameObject.SetActive( true );
-        GameManager.Instance.GetEnemies().AddLast( enemy );
+        GameManager.Instance.PushEnemy( enemy );
         return enemy;
     }
 
     public void Despawn( Enemy _enemy )
     {
-        _enemy.transform.SetParent( wait_pool.transform );
+        _enemy.current_transform.position = new Vector3( 0.0f, 10000.0f, -1.0f );
+        _enemy.current_transform.SetParent( wait_pool.obj_transform );
         _enemy.gameObject.SetActive( false );
-        GameManager.Instance.GetEnemies().Remove( _enemy );
+        GameManager.Instance.PopEnemy( _enemy );
         pool.Push( _enemy );
     }
 }

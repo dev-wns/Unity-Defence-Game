@@ -121,8 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79276b0ae5fbd2e41a65ab6ba6747b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originSpeed: 0
-  moveSpeed: 0
-  healthPoint: 0
-  damageTextParent: {fileID: 0}
-  hudDamageTextPrefab: {fileID: 3873650446117937993, guid: a93c1a375da30de42821b434c257b35f, type: 3}
+  health: 0
+  origin_armor: 0
+  armor: 0
+  damage: 0
+  origin_speed: 0
+  move_speed: 0

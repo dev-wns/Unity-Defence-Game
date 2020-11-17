@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 5449576198880692942, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
-  ability_range: 300
+  ability_range: 100
 --- !u!23 &344322321
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -380,13 +380,14 @@ GameObject:
   - component: {fileID: 526590404}
   - component: {fileID: 526590407}
   - component: {fileID: 526590406}
+  - component: {fileID: 526590405}
   m_Layer: 0
   m_Name: Character Slot 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &526590404
 Transform:
   m_ObjectHideFlags: 0
@@ -401,6 +402,22 @@ Transform:
   m_Father: {fileID: 171458573}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &526590405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526590403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b62f0399c3bce3046881d5501447d3b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5449576198880692942, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
+  curse_amount: 75
+  ability_range: 100
+  ability_duration: 3
 --- !u!23 &526590406
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -784,7 +801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 5449576198880692942, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
   slow_percent: 75
-  ability_range: 300
+  ability_range: 100
   ability_duration: 3
 --- !u!23 &732608053
 MeshRenderer:
@@ -1252,7 +1269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 5449576198880692942, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
-  ability_range: 300
+  ability_range: 100
   ability_duration: 0
 --- !u!23 &1546382461
 MeshRenderer:
@@ -1357,13 +1374,14 @@ GameObject:
   - component: {fileID: 1952328079}
   - component: {fileID: 1952328082}
   - component: {fileID: 1952328081}
+  - component: {fileID: 1952328080}
   m_Layer: 0
   m_Name: Character Slot 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1952328079
 Transform:
   m_ObjectHideFlags: 0
@@ -1378,6 +1396,20 @@ Transform:
   m_Father: {fileID: 171458573}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1952328080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952328078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3366438ee797414a8765d8f4cbba700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 5449576198880692942, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
+  ability_range: 100
 --- !u!23 &1952328081
 MeshRenderer:
   m_ObjectHideFlags: 0

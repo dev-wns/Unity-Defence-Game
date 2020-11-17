@@ -8,6 +8,7 @@ using Debug = UnityEngine.Debug;
 public class DamageText : MonoBehaviour
 {
     private TextMeshProUGUI text;
+    public Transform current_transform;
     private Color alpha;
     private Stopwatch timer = new Stopwatch();
 
@@ -20,8 +21,8 @@ public class DamageText : MonoBehaviour
 
     public void Initialize( Vector2 _pos, int _damage )
     {
-        transform.position = new Vector2( _pos.x + horizontal_offset,
-                                          _pos.y + vertical_offset );
+        current_transform.position = new Vector2( _pos.x + horizontal_offset,
+                                                  _pos.y + vertical_offset );
 
         text.text = _damage.ToString();
         alpha.a = 1.0f;
@@ -30,6 +31,7 @@ public class DamageText : MonoBehaviour
 
     private void Awake()
     {
+        current_transform = transform;
         text = GetComponent<TextMeshProUGUI>();
     }
 
@@ -51,7 +53,7 @@ public class DamageText : MonoBehaviour
             DamageTextPool.Instance.Despawn( this );
         }
 
-        transform.Translate( transform.up * move_speed * Time.deltaTime );
+        current_transform.Translate( current_transform.up * move_speed * Time.deltaTime );
         alpha.a = Mathf.Lerp( alpha.a, 0.0f, alpha_fade_speed * Time.deltaTime );
         text.color = alpha;
     }

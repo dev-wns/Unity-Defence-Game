@@ -5,20 +5,20 @@ using UnityEngine;
 public class Camilla : Player
 {
     [SerializeField]
-    private float ability_range = 300.0f;
+    private float ability_range = 100.0f;
     [SerializeField]
     private float ability_duration;
     private Collider2D[] colliders_in_attack_range;
 
-    protected override void Ability()
+    public override void Ability( Vector2 _pos )
     {
         ability_duration = Random.Range( 0.05f, 0.45f );
-        colliders_in_attack_range = Physics2D.OverlapCircleAll( target.transform.position, ability_range );
-        foreach ( Collider2D enemy_collider in colliders_in_attack_range )
+        colliders_in_attack_range = Physics2D.OverlapCircleAll( _pos, ability_range );
+        for ( int count = 0; count < colliders_in_attack_range.Length; count++ )
         {
-            if ( enemy_collider.transform.CompareTag( "Enemy" ) )
+            if ( colliders_in_attack_range[count]?.CompareTag( "Enemy" ) == true )
             {
-                enemy_collider.GetComponent<Enemy>().SetDebuff( DebuffType.Stun, ability_duration, ability_duration );
+                colliders_in_attack_range[count].GetComponent<Enemy>().SetDebuff( DebuffType.Stun, ability_duration, ability_duration );
             }
         }
     }

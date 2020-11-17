@@ -12,20 +12,32 @@ public class Bullet : MonoBehaviour
     private Vector3 direction;
     private Stopwatch destroy_timer = new Stopwatch();
     private float life_time;
-
+    private Player owner;
+    public Transform current_transform;
     // 충돌 범위 내 적 확인용
     protected Collider2D[] colliders;
 
-    public void Initialize( Vector2 spawn_pos, Vector2 _dir )
+    public Player GetOwner()
     {
+        return owner;
+    }
+
+    public void Initialize( Player _owner, Vector2 spawn_pos, Vector2 _dir )
+    {
+        owner = _owner;
         direction = _dir;
-        transform.position = spawn_pos;
+        current_transform.position = spawn_pos;
         destroy_timer.Restart();
+    }
+
+    private void Awake()
+    {
+        current_transform = transform;
     }
 
     private void Start()
     {
-        speed = 3000.0f;
+        speed = 3500.0f;
         life_time = 1.7f;
     }
 
@@ -33,20 +45,15 @@ public class Bullet : MonoBehaviour
     {
         if ( destroy_timer.ElapsedMilliseconds >= life_time * 1000.0f )
         {
-            BulletObjectPool.Instance.Despawn( this );
+            OnDie();
         }
 
-        this.transform.Translate( direction * speed * Time.deltaTime );
+        current_transform.Translate( direction * speed * Time.deltaTime );
     }
 
-    private void OnTriggerEnter2D( Collider2D _other )
+    public void OnDie()
     {
-        if ( _other.transform.CompareTag( "Enemy" ) == true )
-        {
-            BulletObjectPool.Instance.Despawn( this );
-            destroy_timer.Stop();
-        }
+        BulletObjectPool.Instance.Despawn( this );
+        destroy_timer.Stop();
     }
-
-    public virtual void Ability( Enemy _target ) { }
 }

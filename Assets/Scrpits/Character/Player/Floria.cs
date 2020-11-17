@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Floria : Player
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private float ability_range = 100.0f;
+    private float knockback_amount = 10.0f;
+    private Collider2D[] colliders_in_attack_range;
 
-    // Update is called once per frame
-    void Update()
+    public override void Ability( Vector2 _pos )
     {
-        
+        colliders_in_attack_range = Physics2D.OverlapCircleAll( _pos, ability_range );
+        for ( int count = 0; count < colliders_in_attack_range.Length; count++ )
+        {
+            if ( colliders_in_attack_range[count].CompareTag( "Enemy" ) )
+            {
+                colliders_in_attack_range[count].GetComponent<Enemy>().current_transform.Translate( 0.0f, knockback_amount, 0.0f );
+            }
+        }
     }
 }
