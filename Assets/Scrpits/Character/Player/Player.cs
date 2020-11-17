@@ -7,8 +7,8 @@ using Debug = UnityEngine.Debug;
 public class Player : MonoBehaviour
 {
     public Bullet prefab;
-    //protected Collider2D target;
     protected Enemy target;
+    private WaitForSeconds attack_delay_seconds;
 
     private float attack_range;
     private float attack_delay;
@@ -18,20 +18,39 @@ public class Player : MonoBehaviour
 
     private float min_damage;
     private float max_damage;
-    private float damage;
-
-    protected Transform current_transform;
-
-    private WaitForSeconds attack_delay_seconds;
-
-    public float GetDamage()
+    public float damage
     {
-        damage = Random.Range( min_damage, max_damage );
-        if ( Random.Range( ( int )1, ( int )101 ) <= critical_percent )
+        get
         {
-            damage = damage + ( damage * ( critical_damage_increase * 0.01f ) );
+            damage = Random.Range( min_damage, max_damage );
+            if ( Random.Range( ( int )1, ( int )101 ) <= critical_percent )
+            {
+                damage = damage + ( damage * ( critical_damage_increase * 0.01f ) );
+            }
+            return damage;
         }
-        return damage;
+        private set
+        {
+            if ( value >= 0 )
+            {
+                damage = value;
+            }
+        }
+    }
+    private Transform origin_transform;
+    public Transform current_transform
+    {
+        get
+        {
+            return origin_transform;
+        }
+        set
+        {
+            if ( !ReferenceEquals( value, null ) ) 
+            {
+                origin_transform = value;
+            }
+        }
     }
 
     private void Awake()

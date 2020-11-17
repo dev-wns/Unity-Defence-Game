@@ -15,7 +15,6 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
     private PoolData wait_pool;
 
     private int allocate_count;
-    private int increase_count;
 
     private void Start()
     {
@@ -25,11 +24,13 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         Transform usepool_transform = usepool_parent.transform;
         use_pool = new PoolData( usepool_parent, usepool_transform );
         use_pool.obj_transform.SetParent( transform );
+        use_pool.obj_parent.isStatic = true;
 
         GameObject waitpool_parent = new GameObject( name + "WaitPool" );
         Transform waitpool_transform = usepool_parent.transform;
         wait_pool = new PoolData( waitpool_parent, waitpool_transform );
         wait_pool.obj_transform.SetParent( transform );
+        wait_pool.obj_parent.isStatic = true;
 
         allocate_count = 50;
         Allocate();
@@ -42,6 +43,8 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
             Enemy enemy = Instantiate<Enemy>( prefab );
             enemy.current_transform.SetParent( wait_pool.obj_transform );
             enemy.gameObject.SetActive( false );
+            enemy.gameObject.isStatic = true;
+
             pool.Push( enemy );
         }
     }
@@ -56,7 +59,9 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         enemy.Initialize();
         enemy.current_transform.SetParent( use_pool.obj_transform );
         enemy.gameObject.SetActive( true );
-        GameManager.Instance.PushEnemy( enemy );
+        enemy.gameObject.isStatic = false;
+        GameManager.Instance.enemy_enable_list.AddLast( enemy );
+
         return enemy;
     }
 
@@ -65,7 +70,9 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         _enemy.current_transform.position = new Vector3( 0.0f, 10000.0f, -1.0f );
         _enemy.current_transform.SetParent( wait_pool.obj_transform );
         _enemy.gameObject.SetActive( false );
-        GameManager.Instance.PopEnemy( _enemy );
+        _enemy.gameObject.isStatic = true;
+        GameManager.Instance.enemy_enable_list.Remove( _enemy );
+
         pool.Push( _enemy );
     }
 }

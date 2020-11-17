@@ -7,30 +7,25 @@ using Debug = UnityEngine.Debug;
 public enum DebuffType : int { Slow, Stun, Curse, }
 public class Debuff
 {
-    private bool is_apply;
     private float amount;
     private float duration;
     private Stopwatch timer = new Stopwatch();
+    public bool isApplied { get; private set; }
     
-    public bool isApply()
-    {
-        return is_apply;
-    }
-
     public void Restart()
     {
-        if ( isApply() == true )
+        if ( isApplied.Equals( true ) )
         {
             timer.Restart();
-            is_apply = true;
+            isApplied = true;
         }
     }   
 
     public float GetAmountAndUpdate()
     {
-        if ( timer.ElapsedMilliseconds >= duration * 1000.0f )
+        if ( timer.ElapsedMilliseconds >= duration )
         {
-            is_apply = false;
+            isApplied = false;
             amount = 0.0f;
             timer.Stop();
         }
@@ -44,8 +39,8 @@ public class Debuff
         {
             amount = _amount;
         }
-        duration = _duration;
-        is_apply = true;
+        duration = _duration * 1000.0f;
+        isApplied = true;
         timer.Restart();
     }
 

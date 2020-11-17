@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class BulletObjectPool : Singleton<BulletObjectPool>
 {
-    // 캐릭터 마다 총알이 다르기 때문에
-    // 총알 프리팹을 플레이어쪽에서 들고있음.
-
     // 할당 된 전체 풀
     private Dictionary<string, Stack<Bullet>> pool = new Dictionary<string, Stack<Bullet>>();
 
@@ -16,9 +13,22 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
 
     // 생성할 개수
     private int allocate_count;
-    private int increase_count;
 
-    private Transform current_transform;
+    private Transform origin_transform;
+    public Transform current_transform
+    {
+        get
+        {
+            return origin_transform;
+        }
+        set
+        {
+            if ( !ReferenceEquals( value, null ) )
+            {
+                origin_transform = value;
+            }
+        }
+    }
 
     private void Awake()
     {
@@ -34,7 +44,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
     {
         string name = _prefab.GetType().Name;
 
-        if ( pool.ContainsKey( name ) == false )
+        if ( pool.ContainsKey( name ).Equals( false ) )
         {
             pool.Add( name, new Stack<Bullet>() );
 
@@ -42,11 +52,13 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
             Transform usepool_transform = usepool_parent.transform;
             use_pool.Add( name, new PoolData( usepool_parent, usepool_transform  ) );
             use_pool[name].obj_transform.SetParent( current_transform );
+            use_pool[name].obj_parent.isStatic = true;
 
             GameObject waitpool_parent = new GameObject( name + "WaitPool" );
             Transform waitpool_transform = usepool_parent.transform;
             wait_pool.Add( name, new PoolData( waitpool_parent, waitpool_transform ) );
             wait_pool[name].obj_transform.SetParent( current_transform );
+            wait_pool[name].obj_parent.isStatic = true;
         }
 
         for ( int count = 0; count < allocate_count; count++ )
@@ -55,6 +67,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
             bullet.current_transform.SetParent( wait_pool[name].obj_transform );
             bullet.gameObject.SetActive( false );
             pool[name].Push( bullet );
+            bullet.gameObject.isStatic = true;
         }
     }
 
@@ -62,7 +75,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
     {
         string name = _bullet.GetType().Name;
         // 리스트에 총알이 없다면 새로 생성
-        if ( pool.ContainsKey( name ) == false || pool[name].Count <= 0 )
+        if ( pool.ContainsKey( name ).Equals( false ) || pool[name].Count <= 0 )
         {
             Allocate( _bullet );
         }
@@ -70,6 +83,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
         Bullet bullet = pool[name].Pop();
         bullet.current_transform.SetParent( use_pool[name].obj_transform );
         bullet.gameObject.SetActive( true );
+        bullet.gameObject.isStatic = false;
 
         return bullet;
     }
@@ -80,6 +94,8 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
         _bullet.current_transform.position = new Vector3( 0.0f, 10000.0f, -1.0f );
         _bullet.current_transform.SetParent( wait_pool[name].obj_transform );
         _bullet.gameObject.SetActive( false );
+        _bullet.gameObject.isStatic = true;
+
         pool[name].Push( _bullet );
     }
 }

@@ -12,14 +12,24 @@ public class Bullet : MonoBehaviour
     private Vector3 direction;
     private Stopwatch destroy_timer = new Stopwatch();
     private float life_time;
-    private Player owner;
-    public Transform current_transform;
+    public Player owner { get; private set; }
+
     // 충돌 범위 내 적 확인용
     protected Collider2D[] colliders;
-
-    public Player GetOwner()
+    private Transform origin_transform;
+    public Transform current_transform
     {
-        return owner;
+        get
+        {
+            return origin_transform;
+        }
+        set
+        {
+            if ( !ReferenceEquals( value, null ) )
+            {
+                origin_transform = value;
+            }
+        }
     }
 
     public void Initialize( Player _owner, Vector2 spawn_pos, Vector2 _dir )

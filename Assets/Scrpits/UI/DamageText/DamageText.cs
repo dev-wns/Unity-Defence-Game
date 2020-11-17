@@ -8,7 +8,6 @@ using Debug = UnityEngine.Debug;
 public class DamageText : MonoBehaviour
 {
     private TextMeshProUGUI text;
-    public Transform current_transform;
     private Color alpha;
     private Stopwatch timer = new Stopwatch();
 
@@ -18,6 +17,22 @@ public class DamageText : MonoBehaviour
 
     private float horizontal_offset;
     private float vertical_offset;
+
+    private Transform origin_transform;
+    public Transform current_transform
+    {
+        get
+        {
+            return origin_transform;
+        }
+        set
+        {
+            if ( !ReferenceEquals( value, null ) )
+            {
+                origin_transform = value;
+            }
+        }
+    }
 
     public void Initialize( Vector2 _pos, int _damage )
     {

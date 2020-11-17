@@ -20,11 +20,25 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float move_speed;
 
-    public Transform current_transform;
+    private Transform origin_transform;
+    public Transform current_transform
+    {
+        get
+        {
+            return origin_transform;
+        }
+        set
+        {
+            if ( !ReferenceEquals( value, null ) )
+            {
+                origin_transform = value;
+            }
+        }
+    }
 
     public void SetDebuff( DebuffType _type, float _amount, float _duration )
     {
-        if ( debuffs[_type]?.isApply() == false )
+        if ( !ReferenceEquals( debuffs, null ) && debuffs[_type].isApplied.Equals( false ) )
         {
             debuffs[_type].Initialize( _amount, _duration );
         }
@@ -36,7 +50,7 @@ public class Enemy : MonoBehaviour
 
     public void Initialize()
     {
-        short game_round = GameManager.Instance.GetRound();
+        short game_round = GameManager.Instance.game_round;
         current_transform.position = spawn_position;
         health = ( 1.0f + ( game_round * 0.5f ) ) * 100.0f;
         damage = ( 1.0f + ( game_round * 0.37f ) ) * 10.0f;
@@ -80,8 +94,8 @@ public class Enemy : MonoBehaviour
         if ( _col.CompareTag( "Bullet" ) )
         {
             Bullet bullet = _col.GetComponent<Bullet>();
-            TakeDamage( bullet.GetOwner().GetDamage() );
-            bullet.GetOwner().Ability( current_transform.position );
+            TakeDamage( bullet.owner.damage );
+            bullet.owner.Ability( current_transform.position );
             bullet.OnDie();
         }
 

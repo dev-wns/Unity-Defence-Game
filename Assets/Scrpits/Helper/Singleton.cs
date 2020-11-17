@@ -10,11 +10,11 @@ public class Singleton<Type> : MonoBehaviour where Type : MonoBehaviour
     {
         get
         {
-            if (instance == null )
+            if ( ReferenceEquals( instance, null ) ) 
             {
                 instance = ( Type )FindObjectOfType( typeof( Type ) );
 
-                if ( instance == null )
+                if ( ReferenceEquals( instance, null ) )
                 {
                     GameObject singleton_object = new GameObject();
                     instance = singleton_object.AddComponent<Type>();

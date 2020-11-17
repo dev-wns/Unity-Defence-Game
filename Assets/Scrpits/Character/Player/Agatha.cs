@@ -17,7 +17,7 @@ public class Agatha : Player
         colliders_in_attack_range = Physics2D.OverlapCircleAll( _pos, ability_range );
         for ( int count = 0; count < colliders_in_attack_range.Length; count++ )
         {
-            if ( colliders_in_attack_range[count]?.CompareTag( "Enemy" ) == true )
+            if ( colliders_in_attack_range[count].CompareTag( "Enemy" ).Equals( true ) )
             {
                 colliders_in_attack_range[count].GetComponent<Enemy>().SetDebuff( DebuffType.Slow, slow_percent, ability_duration );
             }

@@ -7,38 +7,21 @@ using Debug = UnityEngine.Debug;
 
 public class GameManager : Singleton<GameManager>
 {
-    private short game_round = 1;
+    public short game_round { get; private set; }
+    public LinkedList<Enemy> enemy_enable_list { get; private set; }
     private Stopwatch spawn_timer = new Stopwatch();
-    public LinkedList<Enemy> enemy_enable_list = new LinkedList<Enemy>();
 
-    public void PushEnemy( Enemy _enemy )
+     private void Awake()
     {
-        if ( _enemy == null && enemy_enable_list.Find( _enemy ) != null )
-        {
-            return;
-        }
-
-        enemy_enable_list.AddLast( _enemy );
-    }
-
-    public void PopEnemy( Enemy _enemy )
-    {
-        if ( _enemy == null )
-        {
-            return;
-        }
-
-        enemy_enable_list.Remove( _enemy );
-    }
-
-    private void Awake()
-    {
+        enemy_enable_list = new LinkedList<Enemy>();
         spawn_timer.Start();
+        game_round = 1;
     }
 
-    public short GetRound()
+    private void Start()
     {
-        return game_round;
+        Screen.SetResolution( 1280, 720, true ); // 720p
+        Application.targetFrameRate = 60;
     }
 
     void Update()
