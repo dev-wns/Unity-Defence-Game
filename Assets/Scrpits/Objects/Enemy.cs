@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    private Slider hp_bar;
     private Dictionary<DebuffType, Debuff> debuffs = new Dictionary<DebuffType, Debuff>();
     private Vector2 spawn_position;
     [SerializeField]
     private float health;
+    private float origin_health;
     [SerializeField]
     private float origin_armor;
     [SerializeField]
@@ -40,9 +42,10 @@ public class Enemy : MonoBehaviour
     {
         short game_round = GameManager.Instance.game_round;
         current_transform.position = spawn_position;
-        health = ( 1.0f + ( game_round * 0.5f ) ) * 100.0f;
+        origin_health = health = ( 1.0f + ( game_round * 0.5f ) ) * 100.0f;
         damage = ( 1.0f + ( game_round * 0.37f ) ) * 10.0f;
         origin_armor = armor = 10.0f; // ( 1.0f + ( game_round * 0.14f ) ) * 3.0f;
+        hp_bar.value = 1.0f;
     }
 
     public void TakeDamage( float _damage )
@@ -56,11 +59,13 @@ public class Enemy : MonoBehaviour
             }
             health -= final_damage;
             DamageTextPool.Instance.Spawn().Initialize( current_transform.position, ( int )final_damage );
+            hp_bar.value = health / origin_health;
         }
     }
 
     private void Awake()
     {
+        hp_bar = GetComponentInChildren<Slider>();
         float width = 1080.0f;
         float height = 1920.0f;
         current_transform = transform;

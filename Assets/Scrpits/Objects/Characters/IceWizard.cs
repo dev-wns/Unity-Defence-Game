@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chloe : Player
+public class IceWizard : Player
 {
     [SerializeField]
-    private float curse_amount = 15.0f;
+    private float slow_percent = 75.0f;
     [SerializeField]
     private float ability_range = 100.0f;
     [SerializeField]
@@ -20,7 +20,7 @@ public class Chloe : Player
         {
             if ( colliders_in_attack_range[count].CompareTag( "Enemy" ) )
             {
-                colliders_in_attack_range[count].GetComponent<Enemy>().SetDebuff( DebuffType.Curse, curse_amount, ability_duration );
+                colliders_in_attack_range[count].GetComponent<Enemy>().SetDebuff( DebuffType.Slow, slow_percent, ability_duration );
             }
         }
     }
