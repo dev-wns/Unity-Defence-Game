@@ -32,6 +32,7 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         current_transform = transform;
+        ConfigUI.on_pause_event += OnPause;
     }
 
     private void Update()
@@ -48,5 +49,22 @@ public class Bullet : MonoBehaviour
     {
         BulletObjectPool.Instance.Despawn( this );
         destroy_timer.Stop();
+    }
+
+    private void OnPause( bool _is_pause )
+    {
+        if ( !gameObject.activeInHierarchy )
+        {
+            return;
+        }
+
+        if ( _is_pause )
+        {
+            destroy_timer.Stop();
+        }
+        else
+        {
+            destroy_timer.Start();
+        }
     }
 }
