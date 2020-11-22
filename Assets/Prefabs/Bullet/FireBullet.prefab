@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6151203358069616013}
   - component: {fileID: 5449576198880692942}
   m_Layer: 0
-  m_Name: DefaultBullet
+  m_Name: FireBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1303110711307934212, guid: df6d917d131029642abaa1741ab95fc2, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -125,7 +125,7 @@ SpriteRenderer:
   m_Size: {x: 182, y: 206.1593}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &6151203358069616013
@@ -138,7 +138,7 @@ Animator:
   m_GameObject: {fileID: 8466752744194947495}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ed9b75cb711471e47987978b980d4c71, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9cf653d37949287408bcca3dccffe096, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

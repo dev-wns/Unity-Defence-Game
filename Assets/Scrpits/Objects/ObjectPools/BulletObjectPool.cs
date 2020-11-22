@@ -22,7 +22,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
 
     private void Allocate( Bullet _prefab )
     {
-        string name = _prefab.GetType().Name;
+        string name = _prefab.name;
 
         if ( !pool.ContainsKey( name ) )
         {
@@ -44,6 +44,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
         for ( int count = 0; count < allocate_count; count++ )
         {
             Bullet bullet = Instantiate<Bullet>( _prefab );
+            bullet.name = name;
             bullet.current_transform.SetParent( wait_pool[name].obj_transform );
             bullet.gameObject.SetActive( false );
             pool[name].Push( bullet );
@@ -52,7 +53,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
 
     public Bullet Spawn( Bullet _bullet )
     {
-        string name = _bullet.GetType().Name;
+        string name = _bullet.name;
         if ( !pool.ContainsKey( name ) || pool[name].Count <= 0 )
         {
             Allocate( _bullet );
@@ -67,7 +68,7 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
 
     public void Despawn( Bullet _bullet )
     {
-        string name = _bullet.GetType().Name;
+        string name = _bullet.name;
         _bullet.current_transform.SetParent( wait_pool[name].obj_transform );
         _bullet.gameObject.SetActive( false );
 

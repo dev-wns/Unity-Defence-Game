@@ -1,52 +1,52 @@
 fileFormatVersion: 2
-guid: df6d917d131029642abaa1741ab95fc2
+guid: 92da04725caf6a940994f56d23aa5f12
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7560284153744367771
-    second: Ice_0
+      213: 1098286324429101383
+    second: Fire_0
   - first:
-      213: -3636919207902785661
-    second: Ice_1
+      213: 7419590508823533442
+    second: Fire_1
   - first:
-      213: -1303110711307934212
-    second: Ice_2
+      213: 2333874723133794383
+    second: Fire_2
   - first:
-      213: -336711030326400945
-    second: Ice_3
+      213: 6211036013863027259
+    second: Fire_3
   - first:
-      213: -5423670133488649932
-    second: Ice_4
+      213: 2168491126659702453
+    second: Fire_4
   - first:
-      213: 1087720106400614472
-    second: Ice_5
+      213: 3081219861163341933
+    second: Fire_5
   - first:
-      213: -4917366295208144538
-    second: Ice_6
+      213: 519553080483729991
+    second: Fire_6
   - first:
-      213: 2703551397962551055
-    second: Ice_7
+      213: 964659150160153652
+    second: Fire_7
   - first:
-      213: -1677759313832863511
-    second: Ice_8
+      213: -6879244290724207698
+    second: Fire_8
   - first:
-      213: 6561725851210089843
-    second: Ice_9
+      213: 7786682891651826984
+    second: Fire_9
   - first:
-      213: 7549039175797423
-    second: Ice_10
+      213: 4566438268169137410
+    second: Fire_10
   - first:
-      213: -3664318909478864359
-    second: Ice_11
+      213: -2935316082851191871
+    second: Fire_11
   - first:
-      213: -8450307655539863047
-    second: Ice_12
+      213: 1139766347546768350
+    second: Fire_12
   - first:
-      213: 3709044876279035056
-    second: Ice_13
+      213: -3504707368110082297
+    second: Fire_13
   - first:
-      213: -9144216069220486797
-    second: Ice_14
+      213: -2272540988029289637
+    second: Fire_14
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ice_3
+      name: Fire_3
       rect:
         serializedVersion: 2
         x: 546
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4860751a13c35bf0800000000000000
-      internalID: -336711030326400945
+      spriteID: b32c67dd858023650800000000000000
+      internalID: 6211036013863027259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice_4
+      name: Fire_4
       rect:
         serializedVersion: 2
         x: 0
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 439738adfb04bb4b0800000000000000
-      internalID: -5423670133488649932
+      spriteID: 5be5327c037081e10800000000000000
+      internalID: 2168491126659702453
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice_5
+      name: Fire_5
       rect:
         serializedVersion: 2
         x: 182
@@ -192,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8480f0d7cab581f00800000000000000
-      internalID: 1087720106400614472
+      spriteID: d68f4838321b2ca20800000000000000
+      internalID: 3081219861163341933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice_6
+      name: Fire_6
       rect:
         serializedVersion: 2
         x: 364
@@ -213,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 661d3a7686102cbb0800000000000000
-      internalID: -4917366295208144538
+      spriteID: 742513426c2d53700800000000000000
+      internalID: 519553080483729991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice_7
+      name: Fire_7
       rect:
         serializedVersion: 2
         x: 546
@@ -234,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0f81932ca1f48520800000000000000
-      internalID: 2703551397962551055
+      spriteID: 43c40a6d268236d00800000000000000
+      internalID: 964659150160153652
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice_8
+      name: Fire_8
       rect:
         serializedVersion: 2
         x: 0
@@ -255,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e893601bc667b8e0800000000000000
-      internalID: -1677759313832863511
+      spriteID: ea3ef30f3c30880a0800000000000000
+      internalID: -6879244290724207698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice_9
+      name: Fire_9
       rect:
         serializedVersion: 2
         x: 182
@@ -276,14 +276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37500ea65eeef0b50800000000000000
-      internalID: 6561725851210089843
+      spriteID: 825c48795dadf0c60800000000000000
+      internalID: 7786682891651826984
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice_10
+      name: Fire_10
       rect:
         serializedVersion: 2
         x: 364
@@ -297,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: faa0876afc1da1000800000000000000
-      internalID: 7549039175797423
+      spriteID: 20da8fe296f3f5f30800000000000000
+      internalID: 4566438268169137410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice_11
+      name: Fire_11
       rect:
         serializedVersion: 2
         x: 546
@@ -318,14 +318,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91af3c0cd59b52dc0800000000000000
-      internalID: -3664318909478864359
+      spriteID: 1c3e92a1399a347d0800000000000000
+      internalID: -2935316082851191871
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice_12
+      name: Fire_12
       rect:
         serializedVersion: 2
         x: 0
@@ -339,29 +339,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f158cc75f97aba80800000000000000
-      internalID: -8450307655539863047
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ice_13
-      rect:
-        serializedVersion: 2
-        x: 182
-        y: 0
-        width: 182
-        height: 206
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b43892e9ac297330800000000000000
-      internalID: 3709044876279035056
+      spriteID: ed33870547341df00800000000000000
+      internalID: 1139766347546768350
       vertices: []
       indices: 
       edges: []

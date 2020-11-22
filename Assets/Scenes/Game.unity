@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbeaa615df7c71941b61ea7c1dcd1f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5449576198880692942, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
+  prefab: {fileID: 5449576198880692942, guid: fc5d76ff54d39a34cab7a5d352192824, type: 3}
   ability_range: 100
   ability_duration: 0
 --- !u!1 &94592823
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b62f0399c3bce3046881d5501447d3b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5449576198880692942, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
+  prefab: {fileID: 5449576198880692942, guid: 13d9afc33bc86794597996b35526b99a, type: 3}
   curse_amount: 15
   ability_range: 100
   ability_duration: 3
@@ -2331,7 +2331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3366438ee797414a8765d8f4cbba700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5449576198880692942, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
+  prefab: {fileID: 5449576198880692942, guid: a615e1377bde8ff42b5fd3bbbb803977, type: 3}
   ability_range: 100
 --- !u!1 &1598164314
 GameObject:
@@ -2708,7 +2708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b353edc343da6a40a8c5a9f2cb37425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5449576198880692942, guid: 5a40b897ca1b75a479731b69b69bba63, type: 3}
+  prefab: {fileID: 5449576198880692942, guid: ef69dc6490bf2a746ac2a2f489bd5c20, type: 3}
   ability_range: 100
 --- !u!1 &1739200874
 GameObject:

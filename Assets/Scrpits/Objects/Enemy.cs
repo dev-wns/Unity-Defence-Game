@@ -158,7 +158,6 @@ public class Enemy : MonoBehaviour
     {
         do
         {
-            GetComponent<Collider2D>().enabled = false;
             current_state = EnemyState.Die;
             animator.SetInteger( "Enemy_State", ( int )current_state );
             // 죽는 모션이 실행되는 시간
