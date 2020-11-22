@@ -162,6 +162,11 @@ MonoBehaviour:
   armor: 0
   origin_speed: 0
   move_speed: 0
+  dead_Sounds:
+  - {fileID: 8300000, guid: 8045cf9679fdee040a7133b0bf922cb7, type: 3}
+  - {fileID: 8300000, guid: 139afd60b692a2644bc91bff268c269b, type: 3}
+  - {fileID: 8300000, guid: eadadca1a82f99e4eac4bf7fa01df498, type: 3}
+  - {fileID: 8300000, guid: 723e67b0c107a75468392a23e687d273, type: 3}
 --- !u!1001 &7655724766882005044
 PrefabInstance:
   m_ObjectHideFlags: 0

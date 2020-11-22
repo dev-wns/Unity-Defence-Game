@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour
     private float move_speed;
     public float damage { get; private set; }
 
+    [SerializeField]
+    private List<AudioClip> dead_Sounds;
+
     public delegate void PlaterHitEvent( Enemy _enemy );
     public static event PlaterHitEvent player_hit_event;
 
@@ -129,6 +132,7 @@ public class Enemy : MonoBehaviour
         debuffs[DebuffType.Slow].OnStop();
         debuffs[DebuffType.Stun].OnStop();
         debuffs[DebuffType.Curse].OnStop();
+        AudioManager.Instance.PlaySound( dead_Sounds );
         EnemyObjectPool.Instance.Despawn( this );
     }
 }
