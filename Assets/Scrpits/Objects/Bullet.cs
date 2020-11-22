@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
 #pragma warning restore CS0649
 
     private readonly float life_time = 1.7f;
-    private readonly float speed = 3000.0f;
+    private readonly float speed = 1500.0f;
     private Stopwatch destroy_timer = new Stopwatch();
     private Vector3 direction;
     public Player owner { get; private set; }

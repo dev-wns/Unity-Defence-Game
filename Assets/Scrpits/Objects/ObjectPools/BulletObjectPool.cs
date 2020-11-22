@@ -47,7 +47,6 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
             bullet.current_transform.SetParent( wait_pool[name].obj_transform );
             bullet.gameObject.SetActive( false );
             pool[name].Push( bullet );
-            bullet.gameObject.isStatic = true;
         }
     }
 
@@ -62,7 +61,6 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
         Bullet bullet = pool[name].Pop();
         bullet.current_transform.SetParent( use_pool[name].obj_transform );
         bullet.gameObject.SetActive( true );
-        bullet.gameObject.isStatic = false;
 
         return bullet;
     }
@@ -72,7 +70,6 @@ public class BulletObjectPool : Singleton<BulletObjectPool>
         string name = _bullet.GetType().Name;
         _bullet.current_transform.SetParent( wait_pool[name].obj_transform );
         _bullet.gameObject.SetActive( false );
-        _bullet.gameObject.isStatic = true;
 
         pool[name].Push( _bullet );
     }

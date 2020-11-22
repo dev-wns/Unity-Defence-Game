@@ -44,7 +44,6 @@ public class DamageTextPool : Singleton<DamageTextPool>
             DamageText obj = Instantiate<DamageText>( prefab );
             obj.current_transform.SetParent( wait_pool.obj_transform );
             obj.gameObject.SetActive( false );
-            obj.gameObject.isStatic = true;
             pool.Push( obj );
         }
     }
@@ -59,7 +58,6 @@ public class DamageTextPool : Singleton<DamageTextPool>
         DamageText obj = pool.Pop();
         obj.current_transform.SetParent( use_pool.obj_transform );
         obj.gameObject.SetActive( true );
-        obj.gameObject.isStatic = false;
 
         return obj;
     }
@@ -68,7 +66,6 @@ public class DamageTextPool : Singleton<DamageTextPool>
     {
         _obj.current_transform.SetParent( wait_pool.obj_transform );
         _obj.gameObject.SetActive( false );
-        _obj.gameObject.isStatic = true;
 
         pool.Push( _obj );
     }

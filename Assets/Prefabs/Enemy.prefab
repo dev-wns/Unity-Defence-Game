@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8817222881126981696}
   - component: {fileID: 112124159735156197}
-  - component: {fileID: 2932530139488857993}
+  - component: {fileID: -4798332022049100558}
   - component: {fileID: 5363512356282295071}
   - component: {fileID: -6374149947239242949}
   - component: {fileID: 1999247224843594680}
@@ -49,8 +49,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424579945086608781}
   m_CullTransparentMesh: 1
---- !u!61 &2932530139488857993
-BoxCollider2D:
+--- !u!58 &-4798332022049100558
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -63,18 +63,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 86, y: 86}
-    newSize: {x: 1.22, y: 1.35}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 100, y: 100}
-  m_EdgeRadius: 0
+  m_Radius: 50
 --- !u!212 &5363512356282295071
 SpriteRenderer:
   m_ObjectHideFlags: 0
