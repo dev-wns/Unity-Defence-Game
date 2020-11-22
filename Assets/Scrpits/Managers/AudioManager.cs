@@ -22,7 +22,7 @@ public class AudioManager : Singleton<AudioManager>
             return;
         }
 
-        audio_source.clip = bgms[ Random.Range( 0, bgms.Count - 1 ) ];
+        audio_source.clip = bgms[ Random.Range( 0, bgms.Count ) ];
         audio_source.Play();
     }
 
@@ -38,6 +38,6 @@ public class AudioManager : Singleton<AudioManager>
             return;
         }
 
-        PlaySound( _sounds[ Random.Range( 0, _sounds.Count - 1 ) ] );
+        PlaySound( _sounds[ Random.Range( 0, _sounds.Count ) ] );
     }
 }
