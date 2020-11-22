@@ -7,10 +7,10 @@ public class ConfigUI : MonoBehaviour
     public GameObject config_pannel;
     public GameObject settings_pannel;
 
-    public void OnResume( bool isResume )
+    public void OnResume( bool _isResume )
     {
-        config_pannel.SetActive( isResume );
-        Time.timeScale = isResume ? 0.0f : 1.0f;
+        config_pannel.SetActive( _isResume );
+        Time.timeScale = _isResume ? 0.0f : 1.0f;
     }
 
     public void OnShowSettings()

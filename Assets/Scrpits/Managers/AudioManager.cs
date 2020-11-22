@@ -26,18 +26,18 @@ public class AudioManager : Singleton<AudioManager>
         audio_source.Play();
     }
 
-    public void PlaySound( AudioClip sound )
+    public void PlaySound( AudioClip _sound )
     {
-        audio_source.PlayOneShot( sound );
+        audio_source.PlayOneShot( _sound );
     }
 
-    public void PlaySound( List<AudioClip> sounds )
+    public void PlaySound( List<AudioClip> _sounds )
     {
-        if ( sounds.Count <= 0 )
+        if ( _sounds.Count <= 0 )
         {
             return;
         }
 
-        PlaySound( sounds[ Random.Range( 0, sounds.Count - 1 ) ] );
+        PlaySound( _sounds[ Random.Range( 0, _sounds.Count - 1 ) ] );
     }
 }
