@@ -66,7 +66,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 122, y: 135}
+    oldSize: {x: 86, y: 86}
     newSize: {x: 1.22, y: 1.35}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -115,7 +115,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3399770308708985102, guid: 7a62a68c3ea675a4da61101da977f150, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,7 +123,7 @@ SpriteRenderer:
   m_Size: {x: 1.22, y: 1.35}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &-6374149947239242949
@@ -157,16 +157,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79276b0ae5fbd2e41a65ab6ba6747b84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  origin_armor: 0
-  armor: 0
-  origin_speed: 0
-  move_speed: 0
   dead_Sounds:
   - {fileID: 8300000, guid: 8045cf9679fdee040a7133b0bf922cb7, type: 3}
   - {fileID: 8300000, guid: 139afd60b692a2644bc91bff268c269b, type: 3}
   - {fileID: 8300000, guid: eadadca1a82f99e4eac4bf7fa01df498, type: 3}
   - {fileID: 8300000, guid: 723e67b0c107a75468392a23e687d273, type: 3}
+  current_state: 0
+  health: 0
+  origin_armor: 0
+  armor: 0
+  origin_speed: 0
+  move_speed: 0
 --- !u!1001 &7655724766882005044
 PrefabInstance:
   m_ObjectHideFlags: 0

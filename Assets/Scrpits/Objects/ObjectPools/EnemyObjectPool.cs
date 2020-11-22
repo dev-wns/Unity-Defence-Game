@@ -55,9 +55,9 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
             Allocate();
         }
         Enemy enemy = pool.Pop();
-        enemy.Initialize();
         enemy.current_transform.SetParent( use_pool.obj_transform );
         enemy.gameObject.SetActive( true );
+        enemy.Initialize();
         enemy.gameObject.isStatic = false;
         GameManager.Instance.enemy_enable_list.AddLast( enemy );
 
