@@ -7,18 +7,22 @@ public class ConfigUI : MonoBehaviour
     public GameObject config_pannel;
     public GameObject settings_pannel;
 
-    public void OnResume( bool _isResume )
+    public delegate void OnPauseEvent( bool _is_pause );
+    public static event OnPauseEvent on_pause_event;
+
+    private void OnPause( bool _is_pause )
     {
-        config_pannel.SetActive( _isResume );
-        Time.timeScale = _isResume ? 0.0f : 1.0f;
+        config_pannel.SetActive( _is_pause );
+        Time.timeScale = _is_pause ? 0.0f : 1.0f;
+        on_pause_event?.Invoke( _is_pause );
     }
 
-    public void OnShowSettings()
+    private void OnShowSettings()
     {
 
     }
 
-    public void OnQuit()
+    private void OnQuit()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
