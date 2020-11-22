@@ -143,3 +143,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 810dbca20927e0144b6df3a3e088d0de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shot_sounds:
+  - {fileID: 8300000, guid: 5c81c4d7bbf927f4da18ce8cbaa2f9a6, type: 3}
+  - {fileID: 8300000, guid: b8dc16eb2bd3c4246810ea692107558b, type: 3}
+  - {fileID: 8300000, guid: 34722a0f5e24c274c9fbed50c8b2cd2e, type: 3}
+  - {fileID: 8300000, guid: 5ece6502de2404c44a6c8fbe604e3190, type: 3}
+  - {fileID: 8300000, guid: 8019cc976f422d841b2fd18267bf0805, type: 3}
+  - {fileID: 8300000, guid: 4b1ae709bafb8f944b71deff8bfafce6, type: 3}
+  - {fileID: 8300000, guid: 56124034245e16a4ebdba39ae9f0c608, type: 3}

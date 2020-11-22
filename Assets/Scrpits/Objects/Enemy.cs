@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+#pragma warning disable CS0649 // 초기화 경고 무시
+    [SerializeField]
+    private List<AudioClip> dead_Sounds;
+#pragma warning restore CS0649
+
     private Slider hp_bar;
     private Dictionary<DebuffType, Debuff> debuffs = new Dictionary<DebuffType, Debuff>();
     private Vector2 spawn_position;
@@ -20,9 +25,6 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float move_speed;
     public float damage { get; private set; }
-
-    [SerializeField]
-    private List<AudioClip> dead_Sounds;
 
     public delegate void PlaterHitEvent( Enemy _enemy );
     public static event PlaterHitEvent player_hit_event;

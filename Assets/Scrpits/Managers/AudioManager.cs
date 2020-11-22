@@ -5,9 +5,12 @@ using UnityEngine;
 [RequireComponent( typeof( AudioSource ) )]
 public class AudioManager : Singleton<AudioManager>
 {
-    private AudioSource audio_source;
+#pragma warning disable CS0649 // 초기화 경고 무시
     [SerializeField]
     private List<AudioClip> bgms;
+#pragma warning restore CS0649
+
+    private AudioSource audio_source;
 
     private void Awake()
     {

@@ -6,6 +6,11 @@ using Debug = UnityEngine.Debug;
 
 public class Bullet : MonoBehaviour
 {
+#pragma warning disable CS0649 // 초기화 경고 무시
+    [SerializeField]
+    private List<AudioClip> shot_sounds;
+#pragma warning restore CS0649
+
     private readonly float life_time = 1.7f;
     private readonly float speed = 3000.0f;
     private Stopwatch destroy_timer = new Stopwatch();
@@ -21,6 +26,7 @@ public class Bullet : MonoBehaviour
         direction = _dir;
         current_transform.position = new Vector3( spawn_pos.x, spawn_pos.y, -1.0f );
         destroy_timer.Restart();
+        AudioManager.Instance.PlaySound( shot_sounds );
     }
 
     private void Awake()
