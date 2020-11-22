@@ -42,7 +42,6 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
             Enemy enemy = Instantiate<Enemy>( prefab );
             enemy.current_transform.SetParent( wait_pool.obj_transform );
             enemy.gameObject.SetActive( false );
-            enemy.gameObject.isStatic = true;
 
             pool.Push( enemy );
         }
@@ -58,7 +57,6 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
         enemy.current_transform.SetParent( use_pool.obj_transform );
         enemy.gameObject.SetActive( true );
         enemy.Initialize();
-        enemy.gameObject.isStatic = false;
         GameManager.Instance.enemy_enable_list.AddLast( enemy );
 
         return enemy;
@@ -68,7 +66,6 @@ public class EnemyObjectPool : Singleton<EnemyObjectPool>
     {
         _enemy.current_transform.SetParent( wait_pool.obj_transform );
         _enemy.gameObject.SetActive( false );
-        _enemy.gameObject.isStatic = true;
         GameManager.Instance.enemy_enable_list.Remove( _enemy );
 
         pool.Push( _enemy );
